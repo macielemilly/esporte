@@ -1,70 +1,68 @@
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <link rel="stylesheet" href="../css/nav.css" />
-
-  </head>
-  <body>
-    <div class="container">
-      <div class="sidebar">
-        <div class="menu-btn">
-          <i class="ph-bold ph-caret-left"></i>
-        </div>
-        <div class="head">
-          <div class="user-img">
-            <img src="../img/crf.png" alt="" />
-          </div>
-          <div class="user-details">
-            <p class="title">Perfil</p>
-            <p class="name"><?php echo $_SESSION['nome']; ?></p>
-          </div>
-        </div>
-        <div class="nav">
-          <div class="menu">
-            <p class="title">Menu</p>
-            <ul>
-              <li>
-                <a href="#">
-                  <i class="icon ph-bold ph-house-simple"></i>
-                  <span class="text">Inicio</span>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <i class="icon ph-bold ph-shopping-bag"></i>
-                  <span class="text">Produtos</span>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <i class="icon ph-bold ph-tag"><img src="../img/ctegoria.png" alt="" /></i>
-                  <span class="text">Categorias</span>
-                </a>
-              </li>
-              
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../css/nav.css">
+    <title>Sidebar</title>
+</head>
+<body>
+    <nav id="sidebar">
+        <div id="sidebar_content">
+            <div id="user">
+                <img src="../img/crf.png" id="user_avatar" alt="Avatar">
+    
+                <p id="user_infos">
+                    <span class="item-description perfil">
+                        Perfil
+                    </span>
+                    <span class="item-description">
+                        <?php echo $_SESSION['nome']; ?>
+                    </span>
+                </p>
+            </div>
+    
+            <ul id="side_items">
+                <li class="side-item active">
+                    <a href="index.php">
+                        <i class="fa-solid fa-house"></i>
+                        <span class="item-description">
+                            Inicio
+                        </span>
+                    </a>
+                </li>
+                <li class="side-item">
+                    <a href="#">
+                        <i class="fa-solid fa-tag"></i>
+                        <span class="item-description">
+                            Categorias
+                        </span>
+                    </a>
+                </li>
+                <li class="side-item">
+                    <a href="#">
+                        <i class="fa-solid fa-box"></i>
+                        <span class="item-description">
+                            Produtos
+                        </span>
+                    </a>
+                </li>
+  
             </ul>
-          </div>
+    
+            <button id="open_btn">
+                <i id="open_btn_icon" class="fa-solid fa-chevron-right"></i>
+            </button>
         </div>
-        <div class="menu">
-          <ul>
-            <li>
-              <a href="../verificar/logout.php">
-                <i class="icon ph-bold ph-sign-out"></i>
-                <span class="text">Sair</span>
-              </a>
-            </li>
-          </ul>
+
+        <div id="logout">
+            <button id="logout_btn">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <a href="../verificar/logout.php" class="item-description">Sair</a>
+            </button>
         </div>
-      </div>
-    </div>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.js"
-      integrity="sha512-8Z5++K1rB3U+USaLKG6oO8uWWBhdYsM3hmdirnOEWp8h2B1aOikj5zBzlXs8QOrvY9OxEnD2QDkbSKKpfqcIWw=="
-      crossorigin="anonymous"
-    ></script>
+    </nav>
     <script src="../js/script.js"></script>
-  </body>
+</body>
 </html>
