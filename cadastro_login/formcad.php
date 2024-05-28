@@ -39,13 +39,13 @@
 
                                 <div class="mb-4">
                                     <input type="text" class="form-control bg-dark text-white form-control-lg input"
-                                        name="login" placeholder="Login" required />
+                                        name="login" placeholder="Login*" required />
                                 </div>
 
                                 <div class="mb-4 py-1">
                                     <input type="password"
                                         class="form-control bg-dark text-white form-control-lg input text-start"
-                                        name="senha" placeholder="Senha" required   />
+                                        name="senha" placeholder="Senha*" required   />
                                 </div>
 
                                 <div class="d-flex justify-content-center align-items-center">
