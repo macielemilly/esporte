@@ -19,6 +19,7 @@ require 'nav.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Produtos</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/produtos.css">
 </head>
@@ -26,7 +27,22 @@ require 'nav.php';
 <body class="altura">
     <div class="container">
         <h1 class="inicio text-danger">Produtos</h1>
-        <div class="d-flex flex-column flex-md-row justify-content-between mt-5 mb-2">
+        <?php
+        if (isset($_GET['sucesso'])) {
+            $nomeProd = $_GET['nome_prod'];
+
+        ?>
+            <div class="alert alert-success alert-dismissible fade show mt-4" role="alert">
+                Produto <?php echo $_GET['nome_prod'];?> cadsatrado com sucesso!
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        <?php
+        }
+        ?>
+
+        <div class="d-flex flex-column flex-md-row justify-content-between mt-4 mb-2">
             <h3>Produtos cadastrados</h3>
             <button type="button" class="btn btn-success mt-2 mt-md-0" data-bs-toggle="modal" data-bs-target="#cadastroModal">
                 Cadastrar produto
@@ -76,64 +92,47 @@ require 'nav.php';
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form class="needs-validation" novalidate>
+                    <form action="../verificar/cadproduto.php" method="post" class="needs-validation" novalidate>
                         <div class="mb-3">
                             <label for="produtoNome" class="form-label">Nome</label>
-                            <input type="text" class="form-control" id="produtoNome" required>
+                            <input name="nome" type="text" class="form-control" id="produtoNome" required>
                             <div class="invalid-feedback">
-                                 Insira o nome do produto.
+                                Insira o nome do produto.
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="produtoPreco" class="form-label">Preço</label>
-                                <input type="text" class="form-control" id="produtoPreco" required>
+                                <input name="preco" type="text" class="form-control" id="produtoPreco" required>
                                 <div class="invalid-feedback">
                                     Insira o preço do produto.
                                 </div>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="produtoQuantidade" class="form-label">Quantidade</label>
-                                <input type="number" class="form-control" id="produtoQuantidade" required>
+                                <input name="quantidade" type="number" class="form-control" id="produtoQuantidade" required>
                                 <div class="invalid-feedback">
                                     Insira a quantidade do produto.
                                 </div>
                             </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="produtoMarca" class="form-label">Marca</label>
-                            <input type="text" class="form-control" id="produtoMarca" required>
-                            <div class="invalid-feedback">
-                                Insira a marca do produto.
-                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="produtoMarca" class="form-label">Marca</label>
+                                <input name="marca" type="text" class="form-control" id="produtoMarca" required>
+                                <div class="invalid-feedback">
+                                    Insira a marca do produto.
+                                </div>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Salvar</button>
-                        <button type="submit" class="btn btn-danger">Cancelar</button>
+                        <button type="submit" name="salvar" class="btn btn-primary">Salvar</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-    <script>
-      
-        (function () {
-            'use strict'
-
-            var forms = document.querySelectorAll('.needs-validation')
-
-            Array.prototype.slice.call(forms)
-                .forEach(function (form) {
-                    form.addEventListener('submit', function (event) {
-                        if (!form.checkValidity()) {
-                            event.preventDefault()
-                            event.stopPropagation()
-                        }
-
-                        form.classList.add('was-validated')
-                    }, false)
-                })
-        })()
-    </script>
+    <script src="../js/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 

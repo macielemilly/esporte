@@ -19,7 +19,7 @@
                 if (isset($_GET['success'])) {
                     if ($_GET['success'] == "ok") {
                         echo "<div class='alert  alert-success alert-dismissible fade show' role='alert'>Uuário acadastrado com sucesso!
-                            <button type='button' class='close align-items-' data-dismiss='alert'        aria-label='Close'>
+                            <button type='button' class='close' data-dismiss='alert'        aria-label='Close'>
                                 <span aria-hidden='true'>&times;</span>
                             </button>
                         </div>";
