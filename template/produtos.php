@@ -33,7 +33,21 @@ require 'nav.php';
 
         ?>
             <div class="alert alert-success alert-dismissible fade show mt-4" role="alert">
-                Produto <?php echo $_GET['nome_prod'];?> cadsatrado com sucesso!
+                Produto <?php echo $_GET['nome_prod']; ?> cadsatrado com sucesso!
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        <?php
+        }
+        ?>
+        <?php
+        if (isset($_GET['excluir'])) {
+            $nomeProd = $_GET['nome_prod'];
+
+        ?>
+            <div class="alert alert-success alert-dismissible fade show mt-4" role="alert">
+                Produto <?php echo $_GET['nome_prod']; ?> excluido com sucesso!
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -72,9 +86,71 @@ require 'nav.php';
                             echo "<td>" . $produto['preco'] . "</td>";
                             echo "<td>" . $produto['qtd_estoque'] . "</td>";
                             echo "<td>" . $produto['marca'] . "</td>";
+                            echo "<td>
+                            <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#editarProdutoModal'>Editar</button>
+                            <div class='modal fade' id='editarProdutoModal' tabindex='-1' role='dialog' aria-labelledby='editarProdutoModalLabel" . $produto['id'] . "' aria-hidden='true'>
+                                    <div class='modal-dialog' role='document'>
+                                        <div class='modal-content'>
+                                            <div class='modal-header'>
+                                                <h5 class='modal-title' id='editarProdutoModalLabel" . $produto['id'] . "'>Editar Produto</h5>
+                                                <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                                                    <span aria-hidden='true'>&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class='modal-body'>
+                                                <!-- Formulário de edição -->
+                                                <form action='../verificar/editarProduto.php' method='post'>
+                                                    <div class='form-group'>
+                                                        <label for='nome'>Nome:</label>
+                                                        <input type='text' class='form-control' id='nome' name='nome' value='" . $produto['nome'] . "'>
+                                                    </div>
+                                                    <div class='form-group'>
+                                                        <label for='preco'>Preço:</label>
+                                                        <input type='text' class='form-control' id='preco' name='preco' value='" . $produto['preco'] . "'>
+                                                    </div>
+                                                    <div class='form-group'>
+                                                        <label for='quantidade'>Quantidade:</label>
+                                                        <input type='text' class='form-control' id='quantidade' name='quantidade' value='" . $produto['qtd_estoque'] . "'>
+                                                    </div>
+                                                    <div class='form-group'>
+                                                        <label for='marca'>Marca:</label>
+                                                        <input type='text' class='form-control' id='marca' name='marca' value='" . $produto['marca'] . "'>
+                                                    </div>
+                                                    <input type='hidden' name='id' value='" . $produto['id'] . "'>
+                                                    <button type='submit' class='btn btn-primary'>Salvar Alterações</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <button type='button' class='btn btn-danger' data-toggle='modal' data-target='#confirmarExclusao'>Excluir</button>
+                                <div class='modal fade' id='confirmarExclusao' tabindex='-1' role='dialog' aria-labelledby='confirmarExclusaoLabel" . $produto['id'] . "' aria-hidden='true'>
+                                    <div class='modal-dialog' role='document'>
+                                        <div class='modal-content'>
+                                            <div class='modal-header'>
+                                                <h5 class='modal-title' id='confirmarExclusaoLabel'>Excluir produto</h5>
+                                                <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                                                    <span aria-hidden='true'>&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class='modal-body'>
+                                                Tem certeza de que deseja excluir o produto " . $produto['nome'] . "?
+                                            </div>
+                                            <div class='modal-footer'>
+                                                <button type='button' class='btn btn-secondary' data-dismiss='modal'>Cancelar</button>
+                                                <form method='post' action='../verificar/excluirProd.php'>
+                                                    <input type='hidden' name='id' value='" . $produto['id'] . "'>
+                                                    <input type='hidden' name='nome' value='" . $produto['nome'] . "'>
+                                                    <button type='submit' name='excluir' class='btn btn-danger'>Confirmar Exclusão</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>";
                             echo "</tr>";
                         }
                         ?>
+                        
                     </tbody>
                 </table>
             <?php
