@@ -44,10 +44,23 @@ require 'nav.php';
         <?php
         if (isset($_GET['excluir'])) {
             $nomeProd = $_GET['nome_prod'];
-
         ?>
             <div class="alert alert-success alert-dismissible fade show mt-4" role="alert">
                 Produto <?php echo $_GET['nome_prod']; ?> excluido com sucesso!
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        <?php
+        }
+        ?>
+          <?php
+        if (isset($_GET['editar'])) {
+            $nomeProd = $_GET['nome_prod'];
+
+        ?>
+            <div class="alert alert-success alert-dismissible fade show mt-4" role="alert">
+                Produto <?php echo $_GET['nome_prod']; ?> editado com sucesso!
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -86,8 +99,8 @@ require 'nav.php';
                             echo "<td>" . $produto['preco'] . "</td>";
                             echo "<td>" . $produto['qtd_estoque'] . "</td>";
                             echo "<td>" . $produto['marca'] . "</td>";
-                            echo "<td>
-                            <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#editarProdutoModal'>Editar</button>
+                            echo "<td class='text-center'>
+                            <button type='button' class='btn btn-primary  ' data-toggle='modal' data-target='#editarProdutoModal'>Editar</button>
                             <div class='modal fade' id='editarProdutoModal' tabindex='-1' role='dialog' aria-labelledby='editarProdutoModalLabel" . $produto['id'] . "' aria-hidden='true'>
                                     <div class='modal-dialog' role='document'>
                                         <div class='modal-content'>
@@ -98,8 +111,7 @@ require 'nav.php';
                                                 </button>
                                             </div>
                                             <div class='modal-body'>
-                                                <!-- Formulário de edição -->
-                                                <form action='../verificar/editarProduto.php' method='post'>
+                                                <form action='../verificar/editarProd.php' method='post'>
                                                     <div class='form-group'>
                                                         <label for='nome'>Nome:</label>
                                                         <input type='text' class='form-control' id='nome' name='nome' value='" . $produto['nome'] . "'>
@@ -117,13 +129,13 @@ require 'nav.php';
                                                         <input type='text' class='form-control' id='marca' name='marca' value='" . $produto['marca'] . "'>
                                                     </div>
                                                     <input type='hidden' name='id' value='" . $produto['id'] . "'>
-                                                    <button type='submit' class='btn btn-primary'>Salvar Alterações</button>
+                                                    <button type='submit' name='salvar' class='btn btn-primary'>Salvar Alterações</button>
                                                 </form>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            <button type='button' class='btn btn-danger' data-toggle='modal' data-target='#confirmarExclusao'>Excluir</button>
+                            <button type='button' class='btn btn-danger ' data-toggle='modal' data-target='#confirmarExclusao'>Excluir</button>
                                 <div class='modal fade' id='confirmarExclusao' tabindex='-1' role='dialog' aria-labelledby='confirmarExclusaoLabel" . $produto['id'] . "' aria-hidden='true'>
                                     <div class='modal-dialog' role='document'>
                                         <div class='modal-content'>
