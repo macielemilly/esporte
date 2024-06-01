@@ -1,9 +1,6 @@
-.inicio-title {
-    margin-top: 60px;
+.inicio {
+    margin-top: 6rem;
 }
 .altura{
-    height: 100vh;
-}
-.teste{
-    width: 80rem;
+    min-height: 100vh;
 }

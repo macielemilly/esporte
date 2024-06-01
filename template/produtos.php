@@ -24,16 +24,21 @@ require 'nav.php';
 </head>
 
 <body class="altura">
-    <div class="mx-5">>
-        <h1 class="inicio-title text-danger">Produtos</h1>
-    </div>
-    <div class="d-flex justify-content-center align-items-center">
-        < class="table-responsive-sm teste">
+    <div class="container">
+        <h1 class="inicio text-danger">Produtos</h1>
+        <div class="d-flex flex-column flex-md-row justify-content-between mt-5 mb-2">
+            <h3>Produtos cadastrados</h3>
+            <button type="button" class="btn btn-success mt-2 mt-md-0" data-bs-toggle="modal" data-bs-target="#cadastroModal">
+                Cadastrar produto
+            </button>
+        </div>
+
+        <div class="table-responsive-sm teste">
             <?php
             if (count($produtos) > 0) {
             ?>
                 <table class="table table-hover table-bordered">
-                    <thead >
+                    <thead>
                         <tr>
                             <th scope="col">ID</th>
                             <th scope="col">Nome</th>
@@ -44,29 +49,91 @@ require 'nav.php';
                     </thead>
                     <tbody>
                         <?php
-                            foreach( $produtos as $produto) {
-                                echo "<tr>";
-                                echo"<td>" . $produto['id'] . "</td>";
-                                echo"<td>" . $produto['nome'] . "</td>";
-                                echo"<td>" . $produto['preco'] . "</td>";
-                                echo"<td>" . $produto['qtd_estoque'] . "</td>";
-                                echo"<td>" . $produto['marca'] . "</td>";
-                                echo "</tr>";
-                            }
+                        foreach ($produtos as $produto) {
+                            echo "<tr>";
+                            echo "<td>" . $produto['id'] . "</td>";
+                            echo "<td>" . $produto['nome'] . "</td>";
+                            echo "<td>" . $produto['preco'] . "</td>";
+                            echo "<td>" . $produto['qtd_estoque'] . "</td>";
+                            echo "<td>" . $produto['marca'] . "</td>";
+                            echo "</tr>";
+                        }
                         ?>
                     </tbody>
                 </table>
             <?php
-            }else{
+            } else {
                 echo "<h1>Sem produtos cadastrados</h1>";
             }
             ?>
         </div>
     </div>
+    <div class="modal fade" id="cadastroModal" tabindex="-1" aria-labelledby="cadastroModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cadastroModalLabel">Cadastrar Produto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form class="needs-validation" novalidate>
+                        <div class="mb-3">
+                            <label for="produtoNome" class="form-label">Nome</label>
+                            <input type="text" class="form-control" id="produtoNome" required>
+                            <div class="invalid-feedback">
+                                 Insira o nome do produto.
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="produtoPreco" class="form-label">Preço</label>
+                                <input type="text" class="form-control" id="produtoPreco" required>
+                                <div class="invalid-feedback">
+                                    Insira o preço do produto.
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="produtoQuantidade" class="form-label">Quantidade</label>
+                                <input type="number" class="form-control" id="produtoQuantidade" required>
+                                <div class="invalid-feedback">
+                                    Insira a quantidade do produto.
+                                </div>
+                            </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="produtoMarca" class="form-label">Marca</label>
+                            <input type="text" class="form-control" id="produtoMarca" required>
+                            <div class="invalid-feedback">
+                                Insira a marca do produto.
+                            </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Salvar</button>
+                        <button type="submit" class="btn btn-danger">Cancelar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+      
+        (function () {
+            'use strict'
 
+            var forms = document.querySelectorAll('.needs-validation')
 
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
 
-
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 

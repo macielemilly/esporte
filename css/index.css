@@ -1,12 +1,12 @@
-.inicio-title {
-    margin-top: 60px;
+.inicio {
+    margin-top: 6rem;
 }
 .text {
-    font-size: 25px;
+    font-size: 30px;
 }
 .altura{
-    height: 100vh;
+    min-height: 100vh;
 }
 .cartao{
-    width: 20rem;
+    width: 100%;
 }
