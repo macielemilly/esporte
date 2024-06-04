@@ -40,7 +40,7 @@
                                 <i class="fa-solid fa-box me-3"></i>Produtos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active d-flex align-items-center letra" href="#">
+                            <a class="nav-link active d-flex align-items-center letra" href="categorias.php">
                                 <i class="fa-solid fa-tag me-3"></i>Categorias</a>
                         </li>
                     </ul>
