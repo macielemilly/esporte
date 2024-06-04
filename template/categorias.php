@@ -16,7 +16,8 @@ require 'nav.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Produtos</title>
+    <title>categoria
+        s</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/produtos.css">
 </head>
@@ -74,85 +75,65 @@ require 'nav.php';
                         <tr class='text-center'>
                             <th scope="col">ID</th>
                             <th scope="col">Nome</th>
-                            
+
                         </tr>
                     </thead>
                     <tbody>
                         <?php
                         foreach ($categorias as $categoria) {
                             echo "<tr class='text-center'>";
-                            echo "<td>" . $produto['id'] . "</td>";
-                            echo "<td>" . $produto['nome'] . "</td>";
-                            echo "<td>" . $produto['preco'] . "</td>";
-                            echo "<td>" . $produto['qtd_estoque'] . "</td>";
-                            echo "<td>" . $produto['marca'] . "</td>";
+                            echo "<td>" . $categoria['id'] . "</td>";
+                            echo "<td>" . $categoria['nome'] . "</td>";
                             echo "<td>
                             <div class='d-flex flex-sm-row justify-content-center'>
-                            <button type='button' class='btn btn-warning me-2' data-bs-toggle='modal' data-bs-target='#editarProdutoModal" . $produto['id'] . "'>Editar</button>
-                            <button type='button' class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#confirmarExclusao" . $produto['id'] . "'>Excluir</button>
+                            <button type='button' class='btn btn-warning me-2' data-bs-toggle='modal' data-bs-target='#editarCategoriaModal" . $categoria['id'] . "'>Editar</button>
+                            <button type='button' class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#confirmarExclusao" . $categoria['id'] . "'>Excluir</button>
                             </div>
-                            <div class='modal fade' id='editarProdutoModal" . $produto['id'] . "' tabindex='-1' aria-labelledby='editarProdutoModalLabel" . $produto['id'] . "' aria-hidden='true'>
+                            <div class='modal fade' id='editarcategoria
+                            Modal" . $categoria['id'] . "' tabindex='-1' aria-labelledby='editarcategoria
+                            ModalLabel" . $categoria['id'] . "' aria-hidden='true'>
                                 <div class='modal-dialog modal-dialog-centered'>
                                     <div class='modal-content'>
                                         <div class='modal-header'>
-                                            <h5 class='modal-title' id='editarProdutoModalLabel" . $produto['id'] . "'>Editar Produto</h5>
+                                            <h5 class='modal-title' id='editarcategoria
+                                            ModalLabel" . $categoria['id'] . "'>Editar categoria
+                                            </h5>
                                             <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
                                         </div>
                                         <div class='modal-body text-start'>
                                             <form action='../verificar/editarProd.php' method='post' class='needs-validation' novalidate>
                                                 <div class='mb-3'>
-                                                    <label for='nome" . $produto['id'] . "' class='form-label'>Nome:</label>
-                                                    <input type='text' class='form-control' id='nome" . $produto['id'] . "' name='nome' value='" . $produto['nome'] . "' required>
+                                                    <label for='nome" . $categoria['id'] . "' class='form-label'>Nome:</label>
+                                                    <input type='text' class='form-control' id='nome" . $categoria['id'] . "' name='nome' value='" . $categoria['nome'] . "' required>
                                                     <div class='invalid-feedback'>
-                                                        Insira o nome do produto.
-                                                    </div>
-                                                </div>
-                                                <div class='row'>
-                                                    <div class='col-md-6 mb-3'>
-                                                        <label for='preco" . $produto['id'] . "' class='form-label'>Preço:</label>
-                                                        <input type='text' class='form-control' id='preco" . $produto['id'] . "' name='preco' value='" . $produto['preco'] . "' required>
-                                                        <div class='invalid-feedback'>
-                                                            Insira o preço do produto.
-                                                        </div>
-                                                    </div>
-                                                    <div class='col-md-6 mb-3'>
-                                                        <label for='quantidade" . $produto['id'] . "' class='form-label'>Quantidade:</label>
-                                                        <input type='text' class='form-control' id='quantidade" . $produto['id'] . "' name='quantidade' value='" . $produto['qtd_estoque'] . "' required>
-                                                        <div class='invalid-feedback'>
-                                                            Insira a quantidade do produto.
-                                                        </div>
-                                                    </div>
-                                                    <div class='col-md-6 mb-3'>
-                                                        <label for='marca" . $produto['id'] . "' class='form-label'>Marca:</label>
-                                                        <input type='text' class='form-control' id='marca" . $produto['id'] . "' name='marca' value='" . $produto['marca'] . "' required>
-                                                        <div class='invalid-feedback'>
-                                                            Insira a marca do produto.
-                                                        </div>
+                                                        Insira o nome do categoria.
                                                     </div>
                                                 </div>
                                                 <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Cancelar</button>
-                                                <input type='hidden' name='id' value='" . $produto['id'] . "'>
+                                                <input type='hidden' name='id' value='" . $categoria['id'] . "'>
                                                 <button type='submit' name='salvar' class='btn btn-primary'>Salvar Alterações</button>
                                             </form>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                                <div class='modal fade' id='confirmarExclusao" . $produto['id'] . "' tabindex='-1' aria-labelledby='confirmarExclusaoLabel" . $produto['id'] . "' aria-hidden='true'>
+                                <div class='modal fade' id='confirmarExclusao" . $categoria['id'] . "' tabindex='-1' aria-labelledby='confirmarExclusaoLabel" . $categoria['id'] . "' aria-hidden='true'>
                                     <div class='modal-dialog'>
                                         <div class='modal-content'>
                                             <div class='modal-header'>
-                                                <h5 class='modal-title' id='confirmarExclusaoLabel" . $produto['id'] . "'>Excluir produto</h5>
+                                                <h5 class='modal-title' id='confirmarExclusaoLabel" . $categoria['id'] . "'>Excluir categoria
+                                                </h5>
                                                 <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
                                             </div>
                                             <div class='modal-body text-start'>
-                                                Tem certeza de que deseja excluir o produto " . $produto['nome'] . "?
+                                                Tem certeza de que deseja excluir o categoria
+                                                 " . $categoria['nome'] . "?
                                             </div>
                                             <div class='modal-footer'>
                                                 <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Cancelar</button>
                                                 <form method='post' action='../verificar/excluirProd.php'>
-                                                    <input type='hidden' name='id' value='" . $produto['id'] . "'>
-                                                    <input type='hidden' name='nome' value='" . $produto['nome'] . "'>
+                                                    <input type='hidden' name='id' value='" . $categoria['id'] . "'>
+                                                    <input type='hidden' name='nome' value='" . $categoria['nome'] . "'>
                                                     <button type='submit' name='excluir' class='btn btn-danger'>Confirmar Exclusão</button>
                                                 </form>
                                             </div>
@@ -176,39 +157,16 @@ require 'nav.php';
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="cadastroModalLabel">Cadastrar Produto</h5>
+                    <h5 class="modal-title" id="cadastroModalLabel">Cadastrar Categoria</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="../verificar/cadproduto.php" method="post" class="needs-validation" novalidate>
+                    <form action="../verificar/cadCategoria.php" method="post" class="needs-validation" novalidate>
                         <div class="mb-3">
-                            <label for="produtoNome" class="form-label">Nome</label>
-                            <input name="nome" type="text" class="form-control" id="produtoNome" required>
+                            <label for="CategoriaNome" class="form-label">Nome</label>
+                            <input name="nome" type="text" class="form-control" id="categoriaNome" required>
                             <div class="invalid-feedback">
-                                Insira o nome do produto.
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label for="produtoPreco" class="form-label">Preço</label>
-                                <input name="preco" type="text" class="form-control" id="produtoPreco" required>
-                                <div class="invalid-feedback">
-                                    Insira o preço do produto.
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="produtoQuantidade" class="form-label">Quantidade</label>
-                                <input name="quantidade" type="number" class="form-control" id="produtoQuantidade" required>
-                                <div class="invalid-feedback">
-                                    Insira a quantidade do produto.
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="produtoMarca" class="form-label">Marca</label>
-                                <input name="marca" type="text" class="form-control" id="produtoMarca" required>
-                                <div class="invalid-feedback">
-                                    Insira a marca do produto.
-                                </div>
+                                Insira o nome da categoria.
                             </div>
                         </div>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
