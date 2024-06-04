@@ -21,22 +21,8 @@
                     <img src="../img/crf.png" alt="Bootstrap" width="40" height="40">
                 </a>
             </div>
-            <div class="d-flex justify-content-end">
-                <li class="nav-item dropdown d-flex align-items-center mx-2">
-                    <a class="nav-link dropdown-toggle text-bg-dark " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <?php echo $_SESSION['nome']; ?>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Home</a></li>
-                        <li><a class="dropdown-item" href="#">Produtos</a></li>
-                        <li><a class="dropdown-item" href="#">Categorias</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="#">sair</a></li>
-                    </ul>
-                </li>
-                <button type="button" class="btn btn-danger  mx-3"><a href="../verificar/logout.php" class="text-decoration-none text-white ">Sair</a></button>
+           
+                <button type="button" class="btn btn-danger mx-3" data-bs-toggle="modal" data-bs-target="#confirmarLogoutModal">Sair</button>
             </div>
             <div class="offcanvas offcanvas-start text-bg-dark" style="width: 300px;" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
                 <div class="offcanvas-header">
@@ -54,15 +40,35 @@
                                 <i class="fa-solid fa-box me-3"></i>Produtos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link d-flex active align-items-center letra" href="#">
+                            <a class="nav-link active d-flex align-items-center letra" href="#">
                                 <i class="fa-solid fa-tag me-3"></i>Categorias</a>
                         </li>
-
                     </ul>
                 </div>
             </div>
         </div>
     </nav>
+
+    <div class="modal fade text-start" id="confirmarLogoutModal" tabindex="-1" aria-labelledby="confirmarLogoutModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmarLogoutModalLabel">Sair da Conta</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Tem certeza de que deseja sair da sua conta?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <form method="post" action="../verificar/logout.php">
+                        <button type="submit" class="btn btn-danger">Confirmar saída</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 
