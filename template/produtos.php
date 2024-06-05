@@ -1,9 +1,6 @@
 <?php
 session_start();
 require '../mydb/conexao.php';
-if (!isset($_SESSION['id'])) {
-    header('Location: ../cadastro_login/login.php');
-}
 
 $sql = "SELECT * FROM produtos";
 $resultado = $pdo->prepare($sql);
@@ -31,7 +28,7 @@ require 'nav.php';
             $nomeProd = $_GET['nome_prod'];
         ?>
             <div class="alert alert-success alert-dismissible fade show mt-4" role="alert">
-                Produto <?php echo $_GET['nome_prod']; ?> cadastrado com sucesso!
+                Produto <?php echo $nomeProd ?> cadastrado com sucesso!
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         <?php
@@ -42,7 +39,7 @@ require 'nav.php';
             $nomeProd = $_GET['nome_prod'];
         ?>
             <div class="alert alert-success alert-dismissible fade show mt-4" role="alert">
-                Produto <?php echo $_GET['nome_prod']; ?> excluído com sucesso!
+                Produto <?php echo $nomeProd; ?> excluído com sucesso!
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         <?php
@@ -53,7 +50,7 @@ require 'nav.php';
             $nomeProd = $_GET['nome_prod'];
         ?>
             <div class="alert alert-success alert-dismissible fade show mt-4" role="alert">
-                Produto <?php echo $_GET['nome_prod']; ?> editado com sucesso!
+                Produto <?php echo $nomeProd; ?> editado com sucesso!
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         <?php
@@ -79,6 +76,7 @@ require 'nav.php';
                             <th scope="col">Preço</th>
                             <th scope="col">Quantidade</th>
                             <th scope="col">Marca</th>
+                            <th scope="col">Ações</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -215,7 +213,7 @@ require 'nav.php';
                                 </div>
                             </div>
                         </div>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss=modal>Cancelar</button>
                         <button type="submit" name="salvar" class="btn btn-primary">Salvar</button>
                     </form>
                 </div>

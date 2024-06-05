@@ -23,23 +23,32 @@ require 'nav.php';
 <body class="altura">
     <div class="container">
         <h1 class="inicio text-danger">Categorias</h1>
-        <?php if (isset($_GET['sucesso'])) { ?>
+
+        <?php if (isset($_GET['sucesso'])) {
+             $nomeCategoria = $_GET['nome_categoria']; ?>
+
             <div class="alert alert-success alert-dismissible fade show mt-4" role="alert">
-                Categoria <?php echo $_GET['nome_categoria']; ?> cadastrada com sucesso!
+                Categoria <?php echo $nomeCategoria; ?> cadastrada com sucesso!
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         <?php } ?>
 
-        <?php if (isset($_GET['excluir'])) { ?>
+        <?php if (isset($_GET['excluir'])) { 
+             $nomeCategoria = $_GET['nome_categoria'];
+            ?>
+
             <div class="alert alert-success alert-dismissible fade show mt-4" role="alert">
-                Categoria <?php echo $_GET['nome_categoria']; ?> excluída com sucesso!
+                Categoria <?php echo $nomeCategoria; ?> excluída com sucesso!
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         <?php } ?>
 
-        <?php if (isset($_GET['editar'])) { ?>
+        <?php if (isset($_GET['editar'])) { 
+             $nomeCategoria = $_GET['nome_categoria'];
+            ?>
+
             <div class="alert alert-success alert-dismissible fade show mt-4" role="alert">
-                Categoria <?php echo $_GET['nome_categoria']; ?> editada com sucesso!
+                Categoria <?php echo $nomeCategoria; ?> editada com sucesso!
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         <?php } ?>
@@ -52,7 +61,9 @@ require 'nav.php';
         </div>
 
         <div class="table-responsive-sm teste">
-            <?php if (count($categorias) > 0) { ?>
+            <?php
+            if (count($categorias) > 0) {
+            ?>
                 <table class="table table-hover table-bordered">
                     <thead>
                         <tr class='text-center'>
@@ -62,78 +73,77 @@ require 'nav.php';
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($categorias as $categoria) { ?>
-                            <tr class='text-center'>
-                                <td><?php echo $categoria['id']; ?></td>
-                                <td><?php echo $categoria['nome']; ?></td>
-                                <td>
-                                    <div class='d-flex flex-sm-row justify-content-center'>
-                                        <button type='button' class='btn btn-warning me-2' data-bs-toggle='modal' data-bs-target='#editarCategoriaModal<?php echo $categoria['id']; ?>'>Editar</button>
-                                        <button type='button' class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#confirmarExclusao<?php echo $categoria['id']; ?>'>Excluir</button>
-                                    </div>
+                        <?php
+                        foreach ($categorias as $categoria) {
 
-                                    <!-- Modal Editar Categoria -->
-                                    <div class='modal fade' id='editarCategoriaModal<?php echo $categoria['id']; ?>' tabindex='-1' aria-labelledby='editarCategoriaModalLabel<?php echo $categoria['id']; ?>' aria-hidden='true'>
+                            echo "<tr class='text-center'>";
+                            echo "<td>" . $categoria['id'] . "</td>";
+                            echo "<td>" . $categoria['nome'] . "</td>";
+                            echo "<td>
+                                    <div class='d-flex flex-sm-row justify-content-center'>
+                                        <button type='button' class='btn btn-warning me-2' data-bs-toggle='modal' data-bs-target='#editarCategoriaModal" . $categoria['id'] . "'>Editar</button>
+                                        <button type='button' class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#confirmarExclusao" . $categoria['id'] . "'>Excluir</button>
+                                    </div>
+                                    <div class='modal fade' id='editarCategoriaModal" . $categoria['id'] . "' tabindex='-1' aria-labelledby='editarCategoriaModalLabel" . $categoria['id'] . "' aria-hidden='true'>
                                         <div class='modal-dialog modal-dialog-centered'>
                                             <div class='modal-content'>
                                                 <div class='modal-header'>
-                                                    <h5 class='modal-title' id='editarCategoriaModalLabel<?php echo $categoria['id']; ?>'>Editar categoria</h5>
+                                                    <h5 class='modal-title' id='editarCategoriaModalLabel" . $categoria['id'] . "'>Editar categoria</h5>
                                                     <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
                                                 </div>
                                                 <div class='modal-body text-start'>
                                                     <form action='../verificar/editarCategoria.php' method='post' class='needs-validation' novalidate>
                                                         <div class='mb-3'>
-                                                            <label for='nome<?php echo $categoria['id']; ?>' class='form-label'>Nome:</label>
-                                                            <input type='text' class='form-control' id='nome<?php echo $categoria['id']; ?>' name='nome' value='<?php echo $categoria['nome']; ?>' required>
+                                                            <label for='nome" . $categoria['nome'] . "' class='form-label'>Nome:</label>
+                                                            <input type='text' class='form-control' id='nome" . $categoria['id'] . "' name='nome' value='" . $categoria['nome'] . "' required>
                                                             <div class='invalid-feedback'>
                                                                 Insira o nome da categoria.
                                                             </div>
                                                         </div>
                                                         <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Cancelar</button>
-                                                        <input type='hidden' name='id' value='<?php echo $categoria['id']; ?>'>
+                                                        <input type='hidden' name='id' value='" . $categoria['id'] . "'>
                                                         <button type='submit' name='salvar' class='btn btn-primary'>Salvar Alterações</button>
                                                     </form>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-
-                                    <!-- Modal Confirmar Exclusão -->
-                                    <div class='modal fade' id='confirmarExclusao<?php echo $categoria['id']; ?>' tabindex='-1' aria-labelledby='confirmarExclusaoLabel<?php echo $categoria['id']; ?>' aria-hidden='true'>
+                                    <div class='modal fade' id='confirmarExclusao" . $categoria['id'] . "' tabindex='-1' aria-labelledby='confirmarExclusaoLabel" . $categoria['id'] . " ' aria-hidden='true'>
                                         <div class='modal-dialog'>
                                             <div class='modal-content'>
                                                 <div class='modal-header'>
-                                                    <h5 class='modal-title' id='confirmarExclusaoLabel<?php echo $categoria['id']; ?>'>Excluir categoria</h5>
+                                                    <h5 class='modal-title' id='confirmarExclusaoLabel" . $categoria['id'] . "'>Excluir categoria</h5>
                                                     <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
                                                 </div>
                                                 <div class='modal-body text-start'>
-                                                    Tem certeza de que deseja excluir a categoria <?php echo $categoria['nome']; ?>?
+                                                    Tem certeza de que deseja excluir a categoria " . $categoria['nome'] . "?
                                                 </div>
                                                 <div class='modal-footer'>
                                                     <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Cancelar</button>
-                                                    <form method='post' action='../verificar/excluirProd.php'>
-                                                        <input type='hidden' name='id' value='<?php echo $categoria['id']; ?>'>
-                                                        <input type='hidden' name='nome' value='<?php echo $categoria['nome']; ?>'>
+                                                    <form method='post' action='../verificar/excluirCategoria.php'>
+                                                        <input type='hidden' name='id' value='" . $categoria['id'] . "'>
+                                                        <input type='hidden' name='nome' value='" . $categoria['nome'] . "'>
                                                         <button type='submit' name='excluir' class='btn btn-danger'>Confirmar Exclusão</button>
                                                     </form>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </td>
-                            </tr>
-                        <?php } ?>
+                                </td>";
+                            echo "</tr>";
+                        }
+                        ?>
                     </tbody>
                 </table>
-            <?php } else { ?>
-                <h1 class='text-center mt-5'>Sem categorias cadastradas</h1>
-            <?php } ?>
+            <?php } else {
+                echo "<h1>Sem produtos cadastrados</h1>";
+            }
+            ?>
         </div>
     </div>
 
-    <!-- Modal Cadastrar Categoria -->
     <div class="modal fade" id="cadastroModal" tabindex="-1" aria-labelledby="cadastroModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-dialog modal-dialog-centered modal-">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="cadastroModalLabel">Cadastrar Categoria</h5>
@@ -158,4 +168,4 @@ require 'nav.php';
 
     <script src="../js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-</
+    
