@@ -26,7 +26,7 @@
             </div>
             <div class="offcanvas offcanvas-start text-bg-dark" style="width: 300px;" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel" data-bs-backdrop="static">
                 <div class="offcanvas-header">
-                    <img src="../img/user.png" alt="" class="">
+                   
                     <p class=" m-2" id="offcanvasDarkNavbarLabel"><?php echo $_SESSION['nome']?></p>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
