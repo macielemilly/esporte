@@ -49,11 +49,13 @@
                                     Login</h1>
 
                                 <div class="mb-4">
-                                    <input type="text" class="input bg-dark form-control text-white form-control-lg" name="login" placeholder="Login*" required />
+                                    <label for="login">Login</label><label class="text-danger" for="login">*</label>
+                                    <input type="text" class="input bg-dark form-control text-white form-control-lg" name="login" placeholder="Login" required />
                                 </div>
 
                                 <div class="mb-4 py-2">
-                                    <input type="password" class="input bg-dark form-control text-white form-control-lg" name="senha" placeholder="Senha*" required />
+                                    <label for="senha">Senha</label><label class="text-danger" for="senha">*</label>
+                                    <input type="password" class="input bg-dark form-control text-white form-control-lg" name="senha" placeholder="Senha" required />
                                 </div>
                                 <div class="d-flex flex-column justify-content-center align-items-center">
                                     <button class="btn btn-outline-light btn-lg mt-4 px-5" type="submit" name="enviar">Enviar</button>

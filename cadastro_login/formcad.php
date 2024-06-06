@@ -17,7 +17,7 @@
             <div class="row d-flex justify-content-center flex-column align-items-center vh-100">
             <?php
                 if (isset($_GET['erro'])) {
-                        echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>já existe um usuário com esse login cadastrado!
+                        echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>Usuário ou senha inválidos. Tente novamente!
                             <button type='button' class='close align-items-' data-dismiss='alert'        aria-label='Close'>
                                 <span aria-hidden='true'>&times;</span>
                             </button>
@@ -38,14 +38,15 @@
                                 <h1 class="fw-bold mb-4 text-center">Cadastro</h1>
 
                                 <div class="mb-4">
+                                <label for="login">Login</label><label class="text-danger" for="login">*</label>
                                     <input type="text" class="form-control bg-dark text-white form-control-lg input"
-                                        name="login" placeholder="Login*" required />
+                                        name="login" placeholder="Login" required/>
                                 </div>
 
                                 <div class="mb-4 py-1">
-                                    <input type="password"
-                                        class="form-control bg-dark text-white form-control-lg input text-start"
-                                        name="senha" placeholder="Senha*" required   />
+                                    <label for="senha">Senha</label><label class="text-danger" for="senha">*</label>
+                                    <input type="password" class="form-control bg-dark text-white form-control-lg input text-start"
+                                        name="senha" placeholder="Senha"  required />
                                 </div>
 
                                 <div class="d-flex justify-content-center align-items-center">

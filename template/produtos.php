@@ -169,7 +169,7 @@ require 'nav.php';
                 </table>
             <?php
             } else {
-                echo "<h1>Sem produtos cadastrados</h1>";
+                echo "<h1 class='text-center'>Sem produtos cadastrados!</h1>";
             }
             ?>
         </div>

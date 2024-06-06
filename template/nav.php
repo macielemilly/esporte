@@ -24,23 +24,25 @@
            
                 <button type="button" class="btn btn-danger mx-3" data-bs-toggle="modal" data-bs-target="#confirmarLogoutModal">Sair</button>
             </div>
-            <div class="offcanvas offcanvas-start text-bg-dark" style="width: 300px;" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+            <div class="offcanvas offcanvas-start text-bg-dark" style="width: 300px;" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel" data-bs-backdrop="static">
                 <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Menu</h5>
+                    <img src="../img/user.png" alt="" class="">
+                    <p class=" m-2" id="offcanvasDarkNavbarLabel"><?php echo $_SESSION['nome']?></p>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">
+                    <p class="mt-2">Menu</p>
                     <ul class="navbar-nav justify-content-start flex-grow-1 pe-3">
-                        <li class="nav-item">
-                            <a class="nav-link active d-flex align-items-center letra" aria-current="page" href="index.php">
+                        <li class="nav-item teste">
+                            <a class="nav-link active d-flex align-items-center" aria-current="page" href="index.php">
                                 <i class="fa-solid fa-house me-3"></i>Início</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link active d-flex align-items-center letra" href="produtos.php">
+                        <li class="nav-item teste mt-2">
+                            <a class="nav-link active d-flex align-items-center" href="produtos.php">
                                 <i class="fa-solid fa-box me-3"></i>Produtos</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link active d-flex align-items-center letra" href="categorias.php">
+                        <li class="nav-item teste mt-2">
+                            <a class="nav-link active d-flex align-items-center" href="categorias.php">
                                 <i class="fa-solid fa-tag me-3"></i>Categorias</a>
                         </li>
                     </ul>
