@@ -1,5 +1,9 @@
 <?php
 session_start();
+if (!isset($_SESSION['id'])) {
+    header('Location: ../cadastro_login/login.php');
+}
+
 require '../mydb/conexao.php';
 
 $sql = "SELECT * FROM categorias";
