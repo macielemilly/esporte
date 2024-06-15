@@ -21,33 +21,40 @@
                     <img src="../img/crf.png" alt="Bootstrap" width="40" height="40">
                 </a>
             </div>
-           
-                <button type="button" class="btn btn-danger mx-3" data-bs-toggle="modal" data-bs-target="#confirmarLogoutModal">Sair</button>
+
+            <button type="button" class="btn btn-danger mx-3" data-bs-toggle="modal" data-bs-target="#confirmarLogoutModal">Sair</button>
+        </div>
+        <div class="offcanvas offcanvas-start text-bg-dark" style="width: 300px;" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel" data-bs-backdrop="static">
+            <div class="offcanvas-header mt-3">
+                <img src="../img/usuario.png" alt="">
+                <p class=" m-2" id="offcanvasDarkNavbarLabel"><?php echo $_SESSION['nome'] ?></p>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
-            <div class="offcanvas offcanvas-start text-bg-dark" style="width: 300px;" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel" data-bs-backdrop="static">
-                <div class="offcanvas-header">
-                    <img src="../img/usuario.png" alt="">
-                    <p class=" m-2" id="offcanvasDarkNavbarLabel"><?php echo $_SESSION['nome']?></p>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                </div>
-                <div class="offcanvas-body">
-                    <p class="mt-2">Menu</p>
-                    <ul class="navbar-nav justify-content-start flex-grow-1 pe-3">
+            <hr class="text-white">
+            <div class="offcanvas-body">
+                <p class="">Menu</p>
+                <ul class="navbar-nav justify-content-start flex-grow-1 pe-3">
+                    <div class="btn btn-dark">
                         <li class="nav-item teste">
-                            <a class="nav-link active d-flex align-items-center" aria-current="page" href="index.php">
+                            <a class="nav-link  active d-flex align-items-center" aria-current="page" href="index.php">
                                 <i class="fa-solid fa-house me-3"></i>Início</a>
+                    </div>
+                    <div class="btn btn-dark">
                         </li>
-                        <li class="nav-item teste mt-2">
-                            <a class="nav-link active d-flex align-items-center" href="produtos.php">
+                        <li class="nav-item teste">
+                            <a class="nav-link active  d-flex align-items-center" href="produtos.php">
                                 <i class="fa-solid fa-box me-3"></i>Produtos</a>
                         </li>
-                        <li class="nav-item teste mt-2">
+                    </div>
+                    <div class="btn btn-dark">
+                        <li class="nav-item teste">
                             <a class="nav-link active d-flex align-items-center" href="categorias.php">
                                 <i class="fa-solid fa-tag me-3"></i>Categorias</a>
                         </li>
-                    </ul>
-                </div>
+                    </div>
+                </ul>
             </div>
+        </div>
         </div>
     </nav>
 

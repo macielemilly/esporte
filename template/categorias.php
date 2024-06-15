@@ -27,6 +27,7 @@ require 'nav.php';
 <body class="altura">
     <div class="container">
         <h1 class="inicio text-danger">Categorias</h1>
+        <hr class="text-danger">
 
         <?php if (isset($_GET['sucesso'])) {
              $nomeCategoria = $_GET['nome_categoria']; ?>

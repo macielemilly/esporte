@@ -29,6 +29,7 @@ require 'nav.php';
 <body class="altura">
     <div class="container">
         <h1 class="inicio text-danger">Produtos</h1>
+        <hr class="text-danger">
         <?php
         if (isset($_GET['sucesso'])) {
             $nomeProd = $_GET['nome_prod'];

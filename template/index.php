@@ -21,6 +21,7 @@ require 'nav.php';
         <div class="d-flex justify-content-between align-items-center">
             <h1 class="inicio text-danger">Inicio</h1>
         </div>
+        <hr class="text-danger">
         <div class="row mt-4">
             <div class="col-12 col-md-4 d-flex justify-content-center mb-4">
                 <div class="card text-dark bg-danger cartao">
@@ -56,8 +57,11 @@ require 'nav.php';
                 </div>
             </div>
         </div>
+        <div class="mt-3 mb-3">
+            <h2 class="text-center">Categorias com mais produtos</h2>
+        </div>
         <div>
-            <table class="table">
+            <table class="table table-bordered table-responsive-md">
                 <thead class="table-dark">
                 <tr class='text-center'>
                             <th scope="col">categoria</th>
@@ -69,7 +73,7 @@ require 'nav.php';
                     require '../verificar/relatorio.php';
                     if($resultado->rowCount() > 0 ){
                         foreach ($resultado as $row){
-                            echo "<tr>";
+                            echo "<tr class='text-center'>";
                             echo "<td>" . $row['categoria'] . "</td>";
                             echo "<td>" . $row['contIDcat'] . "</td>";
                         }
