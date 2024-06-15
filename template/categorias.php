@@ -88,51 +88,6 @@ require 'nav.php';
                                         <button type='button' class='btn btn-dark me-2' data-bs-toggle='modal' data-bs-target='#editarCategoriaModal" . $categoria['id'] . "'>Editar</button>
                                         <button type='button' class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#confirmarExclusao" . $categoria['id'] . "'>Excluir</button>
                                     </div>
-                                    <div class='modal fade' id='editarCategoriaModal" . $categoria['id'] . "' tabindex='-1' aria-labelledby='editarCategoriaModalLabel" . $categoria['id'] . "' aria-hidden='true'>
-                                        <div class='modal-dialog modal-dialog-centered'>
-                                            <div class='modal-content'>
-                                                <div class='modal-header'>
-                                                    <h5 class='modal-title' id='editarCategoriaModalLabel" . $categoria['id'] . "'>Editar categoria</h5>
-                                                    <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
-                                                </div>
-                                                <div class='modal-body text-start'>
-                                                    <form action='../verificar/editarCategoria.php' method='post' class='needs-validation' novalidate>
-                                                        <div class='mb-3'>
-                                                            <label for='nome" . $categoria['nome'] . "' class='form-label'>Nome:</label>
-                                                            <input type='text' class='form-control' id='nome" . $categoria['id'] . "' name='nome' value='" . $categoria['nome'] . "' required>
-                                                            <div class='invalid-feedback'>
-                                                                Insira o nome da categoria.
-                                                            </div>
-                                                        </div>
-                                                        <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Cancelar</button>
-                                                        <input type='hidden' name='id' value='" . $categoria['id'] . "'>
-                                                        <button type='submit' name='salvar' class='btn btn-primary'>Salvar Alterações</button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class='modal fade' id='confirmarExclusao" . $categoria['id'] . "' tabindex='-1' aria-labelledby='confirmarExclusaoLabel" . $categoria['id'] . " ' aria-hidden='true'>
-                                        <div class='modal-dialog'>
-                                            <div class='modal-content'>
-                                                <div class='modal-header'>
-                                                    <h5 class='modal-title' id='confirmarExclusaoLabel" . $categoria['id'] . "'>Excluir categoria</h5>
-                                                    <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
-                                                </div>
-                                                <div class='modal-body text-start'>
-                                                    Tem certeza de que deseja excluir a categoria " . $categoria['nome'] . "?
-                                                </div>
-                                                <div class='modal-footer'>
-                                                    <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Cancelar</button>
-                                                    <form method='post' action='../verificar/excluirCategoria.php'>
-                                                        <input type='hidden' name='id' value='" . $categoria['id'] . "'>
-                                                        <input type='hidden' name='nome' value='" . $categoria['nome'] . "'>
-                                                        <button type='submit' name='excluir' class='btn btn-danger'>Confirmar Exclusão</button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </td>";
                             echo "</tr>";
                         }
@@ -169,6 +124,55 @@ require 'nav.php';
             </div>
         </div>
     </div>
+    <?php foreach ($categorias as $categoria) { ?>
+        <div class="modal fade" id="editarCategoriaModal<?php echo ($categoria['id']); ?>" tabindex="-1" aria-labelledby="editarCategoriaModalLabel<?php echo ($categoria['id']); ?>" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editarCategoriaModalLabel<?php echo ($categoria['id']); ?>">Editar categoria</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body text-start">
+                        <form action="../verificar/editarCategoria.php" method="post" class="needs-validation" novalidate>
+                            <div class='mb-3'>
+                                <label for='nome<?php echo ($categoria['id']); ?>' class='form-label'>Nome:</label>
+                                <input type='text' class='form-control' id='nome<?php echo ($categoria['id']); ?>' name='nome' value='<?php echo ($categoria['nome']); ?>' required>
+                                <div class='invalid-feedback'>
+                                    Insira o nome da categoria.
+                                </div>
+                            </div>
+                            <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Cancelar</button>
+                            <input type='hidden' name='id' value='<?php echo ($categoria['id']); ?>'>
+                            <button type='submit' name='salvar' class='btn btn-primary'>Salvar Alterações</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class='modal fade' id='confirmarExclusao<?php echo ($categoria['id']); ?>' tabindex='-1' aria-labelledby='confirmarExclusaoLabel<?php echo ($categoria['id']); ?>' aria-hidden='true'>
+            <div class='modal-dialog'>
+                <div class='modal-content'>
+                    <div class='modal-header'>
+                        <h5 class='modal-title' id='confirmarExclusaoLabel<?php echo ($categoria['id']); ?>'>Excluir categoria</h5>
+                        <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+                    </div>
+                    <div class='modal-body text-start'>
+                        Tem certeza de que deseja excluir a categoria <?php echo ($categoria['nome']); ?>?
+                    </div>
+                    <div class='modal-footer'>
+                        <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Cancelar</button>
+                        <form method='post' action='../verificar/excluirCategoria.php'>
+                            <input type='hidden' name='id' value='<?php echo ($categoria['id']); ?>'>
+                            <input type='hidden' name='nome' value='<?php echo ($categoria['nome']); ?>'>
+                            <button type='submit' name='excluir' class='btn btn-danger'>Confirmar Exclusão</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php } ?>
+
 
     <script src="../js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

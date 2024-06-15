@@ -139,15 +139,6 @@ require 'nav.php';
                                                             Insira a marca do produto.
                                                         </div>
                                                     </div>
-                                                    <div class='col-md-6 mb-3'>
-                                                    <label for='categoria" . $produto['id'] . "' class='form-label'>Categoria:</label>
-                                                    <input type='text' class='form-control form-select' id='categoria" . $produto['id'] . "' name='marca' value='" . $produto['categoria'] . "' required>
-                                                    <div class='invalid-feedback'>
-                                                        Insira a categoria do produto.
-                                                    </div>
-                                                </div>
-                                                    
-                                                </div>
                                                 <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Cancelar</button>
                                                 <input type='hidden' name='id' value='" . $produto['id'] . "'>
                                                 <button type='submit' name='salvar' class='btn btn-primary'>Salvar Alterações</button>
@@ -230,6 +221,23 @@ require 'nav.php';
                                     Insira a marca do produto.
                                 </div>
                             </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label" for="categoria">Categoria:</label>
+                                <select name="categoria" class="form-select">
+                                    <option value="1" disabled>escolha a categoria</option>
+                                    <?php
+                                    $sql = "SELECT id, nome FROM categorias";
+                                    $resultado = $pdo->prepare($sql);
+                                    $resultado->execute();
+                                    $produtos = $resultado->fetchAll(PDO::FETCH_ASSOC);
+                                    foreach ($produtos as $produto){
+                                        echo "<option value='" . $produto['id'] ."'> " . $produto['nome'] . "</option>";
+                                    }
+                                    ?>
+                                </select>
+
+                            </div>
+
                         </div>
                         <div class="d-flex justify-content-end">
                             <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal">Cancelar</button>
