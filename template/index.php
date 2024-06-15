@@ -22,15 +22,24 @@ require 'nav.php';
             <h1 class="inicio text-danger">Inicio</h1>
         </div>
         <hr class="text-danger">
-        <div class="row mt-4">
+        <div class="row mt-5">
             <div class="col-12 col-md-4 d-flex justify-content-center mb-4">
-                <div class="card text-dark bg-danger cartao">
+                <div class="card text-white bg-dark cartao">
                     <div class="card-body">
                         <h5 class="card-title text">Produtos</h5>
-                        <p class="card-text">Futuro texto.</p>
+                        <?php 
+                        require '../mydb/conexao.php';
+                        $sql = "SELECT COUNT(id) as total_produtos FROM produtos";
+                        $resultado = $pdo->prepare($sql);
+                        $resultado->execute();
+                        $total_produtos = $resultado->fetch(PDO::FETCH_ASSOC)['total_produtos'];
+                        
+                        echo "<h6 class='card-text'>Total de Produtos: $total_produtos</h6>";
+                        ?>
+
                     </div>
                     <div class="card-footer">
-                        <a href="produtos.php" class="text-decoration-none text-dark">Ver mais</a>
+                        <a href="produtos.php" class="text-decoration-none text-white">Ver mais</a>
                     </div>
                 </div>
             </div>
@@ -38,7 +47,16 @@ require 'nav.php';
                 <div class="card text-dark bg-danger cartao">
                     <div class="card-body">
                         <h5 class="card-title text">Categorias</h5>
-                        <p class="card-text">Futuro texto</p>
+                        <?php 
+                        require '../mydb/conexao.php';
+                        $sql = "SELECT COUNT(id) as total_categorias FROM categorias";
+                        $resultado = $pdo->prepare($sql);
+                        $resultado->execute();
+                        $total_categorias = $resultado->fetch(PDO::FETCH_ASSOC)['total_categorias'];
+                        
+                        echo "<h6 class='card-text'>Total de categorias: $total_categorias</h6>";
+                        ?>
+                    
                     </div>
                     <div class="card-footer">
                         <a href="categorias.php" class="text-decoration-none text-dark">Ver mais</a>
@@ -46,18 +64,27 @@ require 'nav.php';
                 </div>
             </div>
             <div class="col-12 col-md-4 d-flex justify-content-center mb-4">
-                <div class="card text-dark bg-danger cartao">
+                <div class="card text-white bg-dark cartao">
                     <div class="card-body">
                         <h5 class="card-title text">Valor total</h5>
-                        <p class="card-text">Futuro texto.</p>
+                        <?php 
+                        require '../mydb/conexao.php';
+                        $sql = "SELECT SUM(preco * qtd_estoque) AS valor_total FROM produtos";
+                        $resultado = $pdo->prepare($sql);
+                        $resultado->execute();
+                        $valor_total = $resultado->fetch(PDO::FETCH_ASSOC)['valor_total'];
+
+                        echo "<h6 class='card-text'>Valor total em estoque: R$ $valor_total </h6>";
+                        ?>
+            
                     </div>
                     <div class="card-footer">
-                        <a href="#" class="text-decoration-none text-dark">Ver mais</a>
+                        <a href="produtos.php" class="text-decoration-none text-white">Ver mais</a>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="mt-3 mb-3">
+        <div class=" mt-5 mb-4">
             <h2 class="text-center">Categorias com mais produtos</h2>
         </div>
         <div>

@@ -119,16 +119,17 @@ require 'nav.php';
     <?php foreach ($produtos as $produto) { ?>
         <!-- editar -->
         <div class="modal fade" id="editarProdutoModal<?php echo ($produto['id']); ?>" tabindex="-1" aria-labelledby="editarProdutoModalLabel<?php echo ($produto['id']); ?>" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="editarProdutoModalLabel<?php echo ($produto['id']); ?>">Editar Produto</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
+                    <!-- editar -->
                     <div class="modal-body text-start">
                         <form action="../verificar/editarProd.php" method="post" class="needs-validation" novalidate>
                             <div class='mb-3'>
-                                <label for='nome<?php echo ($produto['id']); ?>' class='form-label'>Nome:</label>
+                                <label for='nome<?php echo ($produto['id']); ?>' class='form-label'>Nome</label><label class="text-danger" for="">*</label>
                                 <input type='text' class='form-control' id='nome<?php echo ($produto['id']); ?>' name='nome' value='<?php echo ($produto['nome']); ?>' required>
                                 <div class='invalid-feedback'>
                                     Insira o nome do produto.
@@ -136,30 +137,29 @@ require 'nav.php';
                             </div>
                             <div class='row'>
                                 <div class='col-md-6 mb-3'>
-                                    <label for='preco<?php echo ($produto['id']); ?>' class='form-label'>Preço:</label>
+                                    <label for='preco<?php echo ($produto['id']); ?>' class='form-label'>Preço</label><label class="text-danger" for="">*</label>
                                     <input type='text' class='form-control' id='preco<?php echo ($produto['id']); ?>' name='preco' value='<?php echo ($produto['preco']); ?>' required>
                                     <div class='invalid-feedback'>
                                         Insira o preço do produto.
                                     </div>
                                 </div>
                                 <div class='col-md-6 mb-3'>
-                                    <label for='quantidade<?php echo ($produto['id']); ?>' class='form-label'>Quantidade:</label>
+                                    <label for='quantidade<?php echo ($produto['id']); ?>' class='form-label'>Quantidade</label><label class="text-danger" for="">*</label>
                                     <input type='text' class='form-control' id='quantidade<?php echo ($produto['id']); ?>' name='quantidade' value='<?php echo ($produto['qtd_estoque']); ?>' required>
                                     <div class='invalid-feedback'>
                                         Insira a quantidade do produto.
                                     </div>
                                 </div>
                                 <div class='col-md-6 mb-3'>
-                                    <label for='marca<?php echo ($produto['id']); ?>' class='form-label'>Marca:</label>
+                                    <label for='marca<?php echo ($produto['id']); ?>' class='form-label'>Marca</label><label class="text-danger" for="">*</label>
                                     <input type='text' class='form-control' id='marca<?php echo ($produto['id']); ?>' name='marca' value='<?php echo ($produto['marca']); ?>' required>
                                     <div class='invalid-feedback'>
                                         Insira a marca do produto.
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label class="form-label" for="categoria<?php echo ($produto['id']); ?>">Categoria:</label>
-                                    <select name="categoria" class="form-select" id="categoria<?php echo ($produto['id']); ?>">
-                                        <option value="" disabled selected>Escolha a categoria</option>
+                                    <label class="form-label" for="categoria<?php echo ($categoria['nome']); ?>">Categoria</label><label class="text-danger" for="">*</label>
+                                    <select name="categoria" class="form-select" id="categoria<?php echo ($categoria['nome']); ?>">
                                         <?php
                                         $sql = "SELECT id, nome FROM categorias";
                                         $resultado = $pdo->prepare($sql);
@@ -212,7 +212,7 @@ require 'nav.php';
 
     <!-- cadastrar -->
     <div class="modal fade" id="cadastroModal" tabindex="-1" aria-labelledby="cadastroModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title text-center" id="cadastroModalLabel">Cadastrar Produto</h5>
@@ -221,7 +221,7 @@ require 'nav.php';
                 <div class="modal-body">
                     <form action="../verificar/cadproduto.php" method="post" class="needs-validation" novalidate>
                         <div class="mb-3">
-                            <label for="produtoNome" class="form-label">Nome:</label>
+                            <label for="produtoNome" class="form-label">Nome</label><label class="text-danger" for="">*</label>
                             <input name="nome" type="text" class="form-control" id="produtoNome" required>
                             <div class="invalid-feedback">
                                 Insira o nome do produto.
@@ -229,28 +229,28 @@ require 'nav.php';
                         </div>
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label for="produtoPreco" class="form-label">Preço:</label>
+                                <label for="produtoPreco" class="form-label">Preço</label><label class="text-danger" for="">*</label>
                                 <input name="preco" type="text" class="form-control" id="produtoPreco" required>
                                 <div class="invalid-feedback">
                                     Insira o preço do produto.
                                 </div>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label for="produtoQuantidade" class="form-label">Quantidade:</label>
+                                <label for="produtoQuantidade" class="form-label">Quantidade</label><label class="text-danger" for="">*</label>
                                 <input name="quantidade" type="number" class="form-control" id="produtoQuantidade" required>
                                 <div class="invalid-feedback">
                                     Insira a quantidade do produto.
                                 </div>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label for="produtoMarca" class="form-label">Marca:</label>
+                                <label for="produtoMarca" class="form-label">Marca</label><label class="text-danger" for="">*</label>
                                 <input name="marca" type="text" class="form-control" id="produtoMarca" required>
                                 <div class="invalid-feedback">
                                     Insira a marca do produto.
                                 </div>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label class="form-label" for="categoria">Categoria:</label>
+                                <label class="form-label" for="categoria">Categoria</label><label class="text-danger" for="">*</label>
                                 <select name="categoria" class="form-select">
                                     <option value="1" disabled>escolha a categoria</option>
                                     <?php
