@@ -95,7 +95,7 @@ require 'nav.php';
                     </tbody>
                 </table>
             <?php } else {
-                echo "<h1 class='text-center'>Sem categorias cadastradas!</h1>";
+                echo "<h1 class='text-center text-danger'>Sem categorias cadastradas!</h1>";
             }
             ?>
         </div>

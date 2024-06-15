@@ -56,6 +56,29 @@ require 'nav.php';
                 </div>
             </div>
         </div>
+        <div>
+            <table class="table">
+                <thead class="table-dark">
+                <tr class='text-center'>
+                            <th scope="col">categoria</th>
+                            <th scope="col">Quantidade</th>
+                        </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    require '../verificar/relatorio.php';
+                    if($resultado->rowCount() > 0 ){
+                        foreach ($resultado as $row){
+                            echo "<tr>";
+                            echo "<td>" . $row['categoria'] . "</td>";
+                            echo "<td>" . $row['contIDcat'] . "</td>";
+                        }
+                    }
+                    ?>
+
+                </tbody>
+            </table>
+        </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>

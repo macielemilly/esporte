@@ -109,12 +109,14 @@ require 'nav.php';
                 </table>
             <?php
             } else {
-                echo "<h1 class='text-center'>Sem produtos cadastrados!</h1>";
+                echo "<h1 class='text-center text-danger'>Sem produtos cadastrados!</h1>";
             }
             ?>
         </div>
     </div>
+
     <?php foreach ($produtos as $produto) { ?>
+        <!-- editar -->
         <div class="modal fade" id="editarProdutoModal<?php echo ($produto['id']); ?>" tabindex="-1" aria-labelledby="editarProdutoModalLabel<?php echo ($produto['id']); ?>" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
@@ -153,16 +155,37 @@ require 'nav.php';
                                         Insira a marca do produto.
                                     </div>
                                 </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label" for="categoria<?php echo ($produto['id']); ?>">Categoria:</label>
+                                    <select name="categoria" class="form-select" id="categoria<?php echo ($produto['id']); ?>">
+                                        <option value="" disabled selected>Escolha a categoria</option>
+                                        <?php
+                                        $sql = "SELECT id, nome FROM categorias";
+                                        $resultado = $pdo->prepare($sql);
+                                        $resultado->execute();
+                                        $categorias = $resultado->fetchAll(PDO::FETCH_ASSOC);
+                                        foreach ($categorias as $categoria) {
+                                            echo "<option value='" . ($categoria['id']) . "'> " . ($categoria['nome']) . "</option>";
+                                        }
+                                        ?>
+                                    </select>
+                                    <div class='invalid-feedback'>
+                                        Escolha a categoria do produto.
+                                    </div>
+                                </div>
                             </div>
-                            <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Cancelar</button>
+                            <div class="d-flex justify-content-end">
+                            <button type='button' class='btn btn-secondary me-2' data-bs-dismiss='modal'>Cancelar</button>
                             <input type='hidden' name='id' value='<?php echo ($produto['id']); ?>'>
                             <button type='submit' name='salvar' class='btn btn-primary'>Salvar Alterações</button>
+                            </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
 
+        <!-- excluir -->
         <div class='modal fade' id='confirmarExclusao<?php echo ($produto['id']); ?>' tabindex='-1' aria-labelledby='confirmarExclusaoLabel<?php echo ($produto['id']); ?>' aria-hidden='true'>
             <div class='modal-dialog'>
                 <div class='modal-content'>
@@ -234,8 +257,8 @@ require 'nav.php';
                                     $resultado = $pdo->prepare($sql);
                                     $resultado->execute();
                                     $produtos = $resultado->fetchAll(PDO::FETCH_ASSOC);
-                                    foreach ($produtos as $produto){
-                                        echo "<option value='" . $produto['id'] ."'> " . $produto['nome'] . "</option>";
+                                    foreach ($produtos as $produto) {
+                                        echo "<option value='" . $produto['id'] . "'> " . $produto['nome'] . "</option>";
                                     }
                                     ?>
                                 </select>
@@ -252,8 +275,8 @@ require 'nav.php';
             </div>
         </div>
     </div>
-    
-    
+
+
     <script src="../js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
