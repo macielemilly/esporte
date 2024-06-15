@@ -101,73 +101,6 @@ require 'nav.php';
                             <button type='button' class='btn btn-dark me-2' data-bs-toggle='modal' data-bs-target='#editarProdutoModal" . $produto['id'] . "'>Editar</button>
                             <button type='button' class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#confirmarExclusao" . $produto['id'] . "'>Excluir</button>
                             </div>
-                            <div class='modal fade' id='editarProdutoModal" . $produto['id'] . "' tabindex='-1' aria-labelledby='editarProdutoModalLabel" . $produto['id'] . "' aria-hidden='true'>
-                                <div class='modal-dialog modal-dialog-centered'>
-                                    <div class='modal-content'>
-                                        <div class='modal-header'>
-                                            <h5 class='modal-title' id='editarProdutoModalLabel" . $produto['id'] . "'>Editar Produto</h5>
-                                            <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
-                                        </div>
-                                        <div class='modal-body text-start'>
-                                            <form action='../verificar/editarProd.php' method='post' class='needs-validation' novalidate>
-                                                <div class='mb-3'>
-                                                    <label for='nome" . $produto['id'] . "' class='form-label'>Nome:</label>
-                                                    <input type='text' class='form-control' id='nome" . $produto['id'] . "' name='nome' value='" . $produto['nome'] . "' required>
-                                                    <div class='invalid-feedback'>
-                                                        Insira o nome do produto.
-                                                    </div>
-                                                </div>
-                                                <div class='row'>
-                                                    <div class='col-md-6 mb-3'>
-                                                        <label for='preco" . $produto['id'] . "' class='form-label'>Preço:</label>
-                                                        <input type='text' class='form-control' id='preco" . $produto['id'] . "' name='preco' value='" . $produto['preco'] . "' required>
-                                                        <div class='invalid-feedback'>
-                                                            Insira o preço do produto.
-                                                        </div>
-                                                    </div>
-                                                    <div class='col-md-6 mb-3'>
-                                                        <label for='quantidade" . $produto['id'] . "' class='form-label'>Quantidade:</label>
-                                                        <input type='text' class='form-control' id='quantidade" . $produto['id'] . "' name='quantidade' value='" . $produto['qtd_estoque'] . "' required>
-                                                        <div class='invalid-feedback'>
-                                                            Insira a quantidade do produto.
-                                                        </div>
-                                                    </div>
-                                                    <div class='col-md-6 mb-3'>
-                                                        <label for='marca" . $produto['id'] . "' class='form-label'>Marca:</label>
-                                                        <input type='text' class='form-control' id='marca" . $produto['id'] . "' name='marca' value='" . $produto['marca'] . "' required>
-                                                        <div class='invalid-feedback'>
-                                                            Insira a marca do produto.
-                                                        </div>
-                                                    </div>
-                                                <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Cancelar</button>
-                                                <input type='hidden' name='id' value='" . $produto['id'] . "'>
-                                                <button type='submit' name='salvar' class='btn btn-primary'>Salvar Alterações</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                                <div class='modal fade' id='confirmarExclusao" . $produto['id'] . "' tabindex='-1' aria-labelledby='confirmarExclusaoLabel" . $produto['id'] . "' aria-hidden='true'>
-                                    <div class='modal-dialog'>
-                                        <div class='modal-content'>
-                                            <div class='modal-header'>
-                                                <h5 class='modal-title' id='confirmarExclusaoLabel" . $produto['id'] . "'>Excluir produto</h5>
-                                                <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
-                                            </div>
-                                            <div class='modal-body text-start'>
-                                                Tem certeza de que deseja excluir o produto " . $produto['nome'] . "?
-                                            </div>
-                                            <div class='modal-footer'>
-                                                <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Cancelar</button>
-                                                <form method='post' action='../verificar/excluirProd.php'>
-                                                    <input type='hidden' name='id' value='" . $produto['id'] . "'>
-                                                    <input type='hidden' name='nome' value='" . $produto['nome'] . "'>
-                                                    <button type='submit' name='excluir' class='btn btn-danger'>Confirmar Exclusão</button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </td>";
                             echo "</tr>";
                         }
@@ -181,6 +114,77 @@ require 'nav.php';
             ?>
         </div>
     </div>
+    <?php foreach ($produtos as $produto) { ?>
+        <div class="modal fade" id="editarProdutoModal<?php echo ($produto['id']); ?>" tabindex="-1" aria-labelledby="editarProdutoModalLabel<?php echo ($produto['id']); ?>" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editarProdutoModalLabel<?php echo ($produto['id']); ?>">Editar Produto</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body text-start">
+                        <form action="../verificar/editarProd.php" method="post" class="needs-validation" novalidate>
+                            <div class='mb-3'>
+                                <label for='nome<?php echo ($produto['id']); ?>' class='form-label'>Nome:</label>
+                                <input type='text' class='form-control' id='nome<?php echo ($produto['id']); ?>' name='nome' value='<?php echo ($produto['nome']); ?>' required>
+                                <div class='invalid-feedback'>
+                                    Insira o nome do produto.
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div class='col-md-6 mb-3'>
+                                    <label for='preco<?php echo ($produto['id']); ?>' class='form-label'>Preço:</label>
+                                    <input type='text' class='form-control' id='preco<?php echo ($produto['id']); ?>' name='preco' value='<?php echo ($produto['preco']); ?>' required>
+                                    <div class='invalid-feedback'>
+                                        Insira o preço do produto.
+                                    </div>
+                                </div>
+                                <div class='col-md-6 mb-3'>
+                                    <label for='quantidade<?php echo ($produto['id']); ?>' class='form-label'>Quantidade:</label>
+                                    <input type='text' class='form-control' id='quantidade<?php echo ($produto['id']); ?>' name='quantidade' value='<?php echo ($produto['qtd_estoque']); ?>' required>
+                                    <div class='invalid-feedback'>
+                                        Insira a quantidade do produto.
+                                    </div>
+                                </div>
+                                <div class='col-md-6 mb-3'>
+                                    <label for='marca<?php echo ($produto['id']); ?>' class='form-label'>Marca:</label>
+                                    <input type='text' class='form-control' id='marca<?php echo ($produto['id']); ?>' name='marca' value='<?php echo ($produto['marca']); ?>' required>
+                                    <div class='invalid-feedback'>
+                                        Insira a marca do produto.
+                                    </div>
+                                </div>
+                            </div>
+                            <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Cancelar</button>
+                            <input type='hidden' name='id' value='<?php echo ($produto['id']); ?>'>
+                            <button type='submit' name='salvar' class='btn btn-primary'>Salvar Alterações</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class='modal fade' id='confirmarExclusao<?php echo ($produto['id']); ?>' tabindex='-1' aria-labelledby='confirmarExclusaoLabel<?php echo ($produto['id']); ?>' aria-hidden='true'>
+            <div class='modal-dialog'>
+                <div class='modal-content'>
+                    <div class='modal-header'>
+                        <h5 class='modal-title' id='confirmarExclusaoLabel<?php echo ($produto['id']); ?>'>Excluir produto</h5>
+                        <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+                    </div>
+                    <div class='modal-body text-start'>
+                        Tem certeza de que deseja excluir o produto <?php echo ($produto['nome']); ?>?
+                    </div>
+                    <div class='modal-footer'>
+                        <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Cancelar</button>
+                        <form method='post' action='../verificar/excluirProd.php'>
+                            <input type='hidden' name='id' value='<?php echo ($produto['id']); ?>'>
+                            <input type='hidden' name='nome' value='<?php echo ($produto['nome']); ?>'>
+                            <button type='submit' name='excluir' class='btn btn-danger'>Confirmar Exclusão</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php } ?>
 
     <!-- cadastrar -->
     <div class="modal fade" id="cadastroModal" tabindex="-1" aria-labelledby="cadastroModalLabel" aria-hidden="true">
@@ -248,6 +252,7 @@ require 'nav.php';
             </div>
         </div>
     </div>
+    
     
     <script src="../js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
