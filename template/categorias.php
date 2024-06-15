@@ -57,19 +57,19 @@ require 'nav.php';
             </div>
         <?php } ?>
 
-        <div class="d-flex flex-column flex-md-row justify-content-between mt-4 mb-2">
+        <div class="d-flex flex-md-row flex-wrap justify-content-between mt-4 mb-2">
             <h3>Categorias cadastradas</h3>
             <button type="button" class="btn btn-success mt-2 mt-md-0" data-bs-toggle="modal" data-bs-target="#cadastroModal">
                 Cadastrar Categoria
             </button>
         </div>
 
-        <div class="table-responsive-sm teste">
+        <div class="table-responsive-md teste">
             <?php
             if (count($categorias) > 0) {
             ?>
                 <table class="table table-hover table-bordered">
-                    <thead>
+                    <thead class="table-dark">
                         <tr class='text-center'>
                             <th scope="col">ID</th>
                             <th scope="col">Nome</th>
@@ -85,7 +85,7 @@ require 'nav.php';
                             echo "<td>" . $categoria['nome'] . "</td>";
                             echo "<td>
                                     <div class='d-flex flex-sm-row justify-content-center'>
-                                        <button type='button' class='btn btn-warning me-2' data-bs-toggle='modal' data-bs-target='#editarCategoriaModal" . $categoria['id'] . "'>Editar</button>
+                                        <button type='button' class='btn btn-dark me-2' data-bs-toggle='modal' data-bs-target='#editarCategoriaModal" . $categoria['id'] . "'>Editar</button>
                                         <button type='button' class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#confirmarExclusao" . $categoria['id'] . "'>Excluir</button>
                                     </div>
                                     <div class='modal fade' id='editarCategoriaModal" . $categoria['id'] . "' tabindex='-1' aria-labelledby='editarCategoriaModalLabel" . $categoria['id'] . "' aria-hidden='true'>
@@ -140,7 +140,7 @@ require 'nav.php';
                     </tbody>
                 </table>
             <?php } else {
-                echo "<h1>Sem produtos cadastrados</h1>";
+                echo "<h1 class='text-center'>Sem categorias cadastradas!</h1>";
             }
             ?>
         </div>

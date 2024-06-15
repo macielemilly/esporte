@@ -5,7 +5,10 @@ if (!isset($_SESSION['id'])) {
 }
 require '../mydb/conexao.php';
 
-$sql = "SELECT * FROM produtos";
+$sql = "SELECT p.id, p.nome, p.preco, p.qtd_estoque, p.marca, c.nome as categoria
+FROM produtos as p 
+join categorias as c 
+on p.id_categorias = c.id";
 $resultado = $pdo->prepare($sql);
 $resultado->execute();
 $produtos = $resultado->fetchAll(PDO::FETCH_ASSOC);
@@ -60,25 +63,26 @@ require 'nav.php';
         }
         ?>
 
-        <div class="d-flex flex-column flex-md-row justify-content-between mt-4 mb-2">
+        <div class="d-flex flex-md-row flex-wrap justify-content-between mt-4 mb-2">
             <h3>Produtos cadastrados</h3>
             <button type="button" class="btn btn-success mt-2 mt-md-0" data-bs-toggle="modal" data-bs-target="#cadastroModal">
                 Cadastrar produto
             </button>
         </div>
 
-        <div class="table-responsive-sm teste">
+        <div class="table-responsive-md teste mt-4">
             <?php
             if (count($produtos) > 0) {
             ?>
                 <table class="table table-hover table-bordered">
-                    <thead>
+                    <thead class="table-dark">
                         <tr class='text-center'>
                             <th scope="col">ID</th>
                             <th scope="col">Nome</th>
                             <th scope="col">Preço</th>
                             <th scope="col">Quantidade</th>
                             <th scope="col">Marca</th>
+                            <th scope="col">Categoria</th>
                             <th scope="col">Ações</th>
                         </tr>
                     </thead>
@@ -91,9 +95,10 @@ require 'nav.php';
                             echo "<td>" . $produto['preco'] . "</td>";
                             echo "<td>" . $produto['qtd_estoque'] . "</td>";
                             echo "<td>" . $produto['marca'] . "</td>";
+                            echo "<td>" . $produto['categoria'] . "</td>";
                             echo "<td>
                             <div class='d-flex flex-sm-row justify-content-center'>
-                            <button type='button' class='btn btn-warning me-2' data-bs-toggle='modal' data-bs-target='#editarProdutoModal" . $produto['id'] . "'>Editar</button>
+                            <button type='button' class='btn btn-dark me-2' data-bs-toggle='modal' data-bs-target='#editarProdutoModal" . $produto['id'] . "'>Editar</button>
                             <button type='button' class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#confirmarExclusao" . $produto['id'] . "'>Excluir</button>
                             </div>
                             <div class='modal fade' id='editarProdutoModal" . $produto['id'] . "' tabindex='-1' aria-labelledby='editarProdutoModalLabel" . $produto['id'] . "' aria-hidden='true'>
@@ -134,6 +139,14 @@ require 'nav.php';
                                                             Insira a marca do produto.
                                                         </div>
                                                     </div>
+                                                    <div class='col-md-6 mb-3'>
+                                                    <label for='categoria" . $produto['id'] . "' class='form-label'>Categoria:</label>
+                                                    <input type='text' class='form-control form-select' id='categoria" . $produto['id'] . "' name='marca' value='" . $produto['categoria'] . "' required>
+                                                    <div class='invalid-feedback'>
+                                                        Insira a categoria do produto.
+                                                    </div>
+                                                </div>
+                                                    
                                                 </div>
                                                 <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Cancelar</button>
                                                 <input type='hidden' name='id' value='" . $produto['id'] . "'>
@@ -177,17 +190,19 @@ require 'nav.php';
             ?>
         </div>
     </div>
+
+    <!-- cadastrar -->
     <div class="modal fade" id="cadastroModal" tabindex="-1" aria-labelledby="cadastroModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="cadastroModalLabel">Cadastrar Produto</h5>
+                    <h5 class="modal-title text-center" id="cadastroModalLabel">Cadastrar Produto</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form action="../verificar/cadproduto.php" method="post" class="needs-validation" novalidate>
                         <div class="mb-3">
-                            <label for="produtoNome" class="form-label">Nome</label>
+                            <label for="produtoNome" class="form-label">Nome:</label>
                             <input name="nome" type="text" class="form-control" id="produtoNome" required>
                             <div class="invalid-feedback">
                                 Insira o nome do produto.
@@ -195,34 +210,37 @@ require 'nav.php';
                         </div>
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label for="produtoPreco" class="form-label">Preço</label>
+                                <label for="produtoPreco" class="form-label">Preço:</label>
                                 <input name="preco" type="text" class="form-control" id="produtoPreco" required>
                                 <div class="invalid-feedback">
                                     Insira o preço do produto.
                                 </div>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label for="produtoQuantidade" class="form-label">Quantidade</label>
+                                <label for="produtoQuantidade" class="form-label">Quantidade:</label>
                                 <input name="quantidade" type="number" class="form-control" id="produtoQuantidade" required>
                                 <div class="invalid-feedback">
                                     Insira a quantidade do produto.
                                 </div>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label for="produtoMarca" class="form-label">Marca</label>
+                                <label for="produtoMarca" class="form-label">Marca:</label>
                                 <input name="marca" type="text" class="form-control" id="produtoMarca" required>
                                 <div class="invalid-feedback">
                                     Insira a marca do produto.
                                 </div>
                             </div>
                         </div>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss=modal>Cancelar</button>
-                        <button type="submit" name="salvar" class="btn btn-primary">Salvar</button>
+                        <div class="d-flex justify-content-end">
+                            <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="submit" name="salvar" class="btn btn-primary">Salvar</button>
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+    
     <script src="../js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>

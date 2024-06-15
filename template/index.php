@@ -40,7 +40,7 @@ require 'nav.php';
                         <p class="card-text">Futuro texto</p>
                     </div>
                     <div class="card-footer">
-                        <a href="#" class="text-decoration-none text-dark">Ver mais</a>
+                        <a href="categorias.php" class="text-decoration-none text-dark">Ver mais</a>
                     </div>
                 </div>
             </div>
