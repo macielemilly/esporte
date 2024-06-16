@@ -125,7 +125,6 @@ require 'nav.php';
                         <h5 class="modal-title" id="editarProdutoModalLabel<?php echo ($produto['id']); ?>">Editar Produto</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <!-- editar -->
                     <div class="modal-body text-start">
                         <form action="../verificar/editarProd.php" method="post" class="needs-validation" novalidate>
                             <div class='mb-3'>
@@ -158,28 +157,18 @@ require 'nav.php';
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label class="form-label" for="categoria<?php echo ($categoria['nome']); ?>">Categoria</label><label class="text-danger" for="">*</label>
-                                    <select name="categoria" class="form-select" id="categoria<?php echo ($categoria['nome']); ?>">
-                                    <?php
-                                    $sql = "SELECT * FROM categorias";
-                                    $resultado = $pdo->prepare($sql);
-                                    $resultado->execute();
-                                    $categorias = $resultado->fetchAll(PDO::FETCH_ASSOC);
-                                    if (count($categorias) > 0){
-                                        foreach ($categorias as $categoria){
-                                            if($categoria['nome'] == $categoria_nome){
-                                                $selected = 'selected';
-                                            }elseif($categoria ['id'] == $categoria_nome){
-                                                $selected = 'selected';
-                                                
-                                            }else {
-                                                $selected = '';
-                                            }
-                                            echo "<option value='" . $categoria['id'] . " '$selected>" . $categoria['nome'] . "</option>";
+                                    <label class="form-label" for="categoria<?php echo $produto['id']; ?>">Categoria</label><label class="text-danger">*</label>
+                                    <select name="categoria" class="form-select" id="categoria<?php echo $produto['id']; ?>">
+                                        <?php
+                                        $sql = "SELECT * FROM categorias";
+                                        $resultado = $pdo->prepare($sql);
+                                        $resultado->execute();
+                                        $categorias = $resultado->fetchAll(PDO::FETCH_ASSOC);
+                                        foreach ($categorias as $categoria) {
+                                            $selected = ($categoria['id'] == $produto['id_categorias']) ? 'selected' : '';
+                                            echo "<option value='" . $categoria['id'] . "' $selected>" . $categoria['nome'] . "</option>";
                                         }
-                                    }
-                                    
-                                    ?>
+                                        ?>
                                     </select>
                                     <div class='invalid-feedback'>
                                         Escolha a categoria do produto.
@@ -187,9 +176,9 @@ require 'nav.php';
                                 </div>
                             </div>
                             <div class="d-flex justify-content-end">
-                            <button type='button' class='btn btn-secondary me-2' data-bs-dismiss='modal'>Cancelar</button>
-                            <input type='hidden' name='id' value='<?php echo ($produto['id']); ?>'>
-                            <button type='submit' name='salvar' class='btn btn-primary'>Salvar Alterações</button>
+                                <button type='button' class='btn btn-secondary me-2' data-bs-dismiss='modal'>Cancelar</button>
+                                <input type='hidden' name='id' value='<?php echo ($produto['id']); ?>'>
+                                <button type='submit' name='salvar' class='btn btn-primary'>Salvar Alterações</button>
                             </div>
                         </form>
                     </div>

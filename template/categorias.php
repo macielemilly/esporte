@@ -112,7 +112,7 @@ require 'nav.php';
                 <div class="modal-body">
                     <form action="../verificar/cadCategoria.php" method="post" class="needs-validation" novalidate>
                         <div class="mb-3">
-                            <label for="categoriaNome" class="form-label">Nome</label>
+                            <label for="categoriaNome" class="form-label">Nome</label><label class="text-danger" for="">*</label>
                             <input name="nome" type="text" class="form-control" id="categoriaNome" required>
                             <div class="invalid-feedback">
                                 Insira o nome da categoria.
@@ -136,7 +136,7 @@ require 'nav.php';
                     <div class="modal-body text-start">
                         <form action="../verificar/editarCategoria.php" method="post" class="needs-validation" novalidate>
                             <div class='mb-3'>
-                                <label for='nome<?php echo ($categoria['id']); ?>' class='form-label'>Nome:</label>
+                                <label for='nome<?php echo ($categoria['id']); ?>' class='form-label'>Nome</label><label class="text-danger" for="">*</label>
                                 <input type='text' class='form-control' id='nome<?php echo ($categoria['id']); ?>' name='nome' value='<?php echo ($categoria['nome']); ?>' required>
                                 <div class='invalid-feedback'>
                                     Insira o nome da categoria.
