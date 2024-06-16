@@ -64,14 +64,14 @@ require 'nav.php';
         }
         ?>
 
-        <div class="d-flex flex-md-row flex-wrap justify-content-between mt-4 mb-2">
+        <div class="d-flex flex-md-row flex-wrap justify-content-between mt-5">
             <h3>Produtos cadastrados</h3>
             <button type="button" class="btn btn-success mt-2 mt-md-0" data-bs-toggle="modal" data-bs-target="#cadastroModal">
                 Cadastrar produto
             </button>
         </div>
 
-        <div class="table-responsive-md teste mt-4">
+        <div class="table-responsive-md teste mt-2">
             <?php
             if (count($produtos) > 0) {
             ?>
@@ -160,15 +160,26 @@ require 'nav.php';
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label" for="categoria<?php echo ($categoria['nome']); ?>">Categoria</label><label class="text-danger" for="">*</label>
                                     <select name="categoria" class="form-select" id="categoria<?php echo ($categoria['nome']); ?>">
-                                        <?php
-                                        $sql = "SELECT id, nome FROM categorias";
-                                        $resultado = $pdo->prepare($sql);
-                                        $resultado->execute();
-                                        $categorias = $resultado->fetchAll(PDO::FETCH_ASSOC);
-                                        foreach ($categorias as $categoria) {
-                                            echo "<option value='" . ($categoria['id']) . "'> " . ($categoria['nome']) . "</option>";
+                                    <?php
+                                    $sql = "SELECT * FROM categorias";
+                                    $resultado = $pdo->prepare($sql);
+                                    $resultado->execute();
+                                    $categorias = $resultado->fetchAll(PDO::FETCH_ASSOC);
+                                    if (count($categorias) > 0){
+                                        foreach ($categorias as $categoria){
+                                            if($categoria['nome'] == $categoria_nome){
+                                                $selected = 'selected';
+                                            }elseif($categoria ['id'] == $categoria_nome){
+                                                $selected = 'selected';
+                                                
+                                            }else {
+                                                $selected = '';
+                                            }
+                                            echo "<option value='" . $categoria['id'] . " '$selected>" . $categoria['nome'] . "</option>";
                                         }
-                                        ?>
+                                    }
+                                    
+                                    ?>
                                     </select>
                                     <div class='invalid-feedback'>
                                         Escolha a categoria do produto.
@@ -251,15 +262,15 @@ require 'nav.php';
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label class="form-label" for="categoria">Categoria</label><label class="text-danger" for="">*</label>
-                                <select name="categoria" class="form-select">
-                                    <option value="1" disabled>escolha a categoria</option>
+                                <select name="categoria" class="form-select" required>
+                                    <option value="1"> </option>
                                     <?php
-                                    $sql = "SELECT id, nome FROM categorias";
+                                    $sql = "SELECT * FROM categorias";
                                     $resultado = $pdo->prepare($sql);
                                     $resultado->execute();
-                                    $produtos = $resultado->fetchAll(PDO::FETCH_ASSOC);
-                                    foreach ($produtos as $produto) {
-                                        echo "<option value='" . $produto['id'] . "'> " . $produto['nome'] . "</option>";
+                                    $categorias = $resultado->fetchAll(PDO::FETCH_ASSOC);
+                                    foreach ($categorias as $categoria) {
+                                        echo "<option value='" . $categoria['id'] . "'> " . $categoria['nome'] . "</option>";
                                     }
                                     ?>
                                 </select>

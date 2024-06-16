@@ -58,14 +58,14 @@ require 'nav.php';
             </div>
         <?php } ?>
 
-        <div class="d-flex flex-md-row flex-wrap justify-content-between mt-4 mb-2">
+        <div class="d-flex flex-md-row flex-wrap justify-content-between mt-5">
             <h3>Categorias cadastradas</h3>
             <button type="button" class="btn btn-success mt-2 mt-md-0" data-bs-toggle="modal" data-bs-target="#cadastroModal">
                 Cadastrar Categoria
             </button>
         </div>
 
-        <div class="table-responsive-md teste">
+        <div class="table-responsive-md teste mt-2">
             <?php
             if (count($categorias) > 0) {
             ?>
