@@ -8,6 +8,7 @@ $sql = "SELECT COUNT(c.id) AS contIDcat, c.nome AS categoria
         ORDER BY contIDcat DESC
         LIMIT 3";
 
-$resultado = $pdo->query($sql);
+$resultado = $pdo->prepare($sql);
+$resultado->execute();
 
 ?>
