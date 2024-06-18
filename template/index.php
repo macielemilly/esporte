@@ -44,9 +44,9 @@ require 'nav.php';
                 </div>
             </div>
             <div class="col-12 col-md-4 d-flex justify-content-center mb-4">
-                <div class="card text-dark bg-danger cartao">
+                <div class="card text-dark cartao bg-danger">
                     <div class="card-body">
-                        <h5 class="card-title text">Categorias</h5>
+                        <h5 class="card-title text text-white">Categorias</h5>
                         <?php 
                         require '../mydb/conexao.php';
                         $sql = "SELECT COUNT(id) as total_categorias FROM categorias";
@@ -54,12 +54,12 @@ require 'nav.php';
                         $resultado->execute();
                         $total_categorias = $resultado->fetch(PDO::FETCH_ASSOC)['total_categorias'];
                         
-                        echo "<h6 class='card-text'>Total de categorias: $total_categorias</h6>";
+                        echo "<h6 class='card-text text-white'>Total de categorias: $total_categorias</h6>";
                         ?>
                     
                     </div>
                     <div class="card-footer">
-                        <a href="categorias.php" class="text-decoration-none text-dark">Ver mais</a>
+                        <a href="categorias.php" class="text-decoration-none text-white">Ver mais</a>
                     </div>
                 </div>
             </div>
