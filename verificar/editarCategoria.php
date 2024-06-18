@@ -15,6 +15,8 @@ if (isset($_POST['salvar'])) {
         $resultado->execute();
 
         header("Location: ../template/categorias.php?nome_categoria=$nome&editar=ok");
+    }elseif(empty($_POST['nome'])){
+        header('Location:../template/produtos.php?camposnpreenchidos');
     }
 }
 ?>

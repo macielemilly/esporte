@@ -57,6 +57,15 @@ require 'nav.php';
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         <?php } ?>
+        <?php
+
+        if (isset($_GET['camposnpreenchidos'])) { ?>
+            <div class="alert alert-danger alert-dismissible fade show mt-4" role="alert">
+                Preencha todos os campos!
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+
+        <?php } ?>
 
         <div class="d-flex flex-md-row flex-wrap justify-content-between mt-5">
             <h3>Categorias cadastradas</h3>
@@ -159,7 +168,7 @@ require 'nav.php';
                         <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
                     </div>
                     <div class='modal-body text-start'>
-                        Tem certeza de que deseja excluir a categoria <?php echo ($categoria['nome']); ?>?
+                        Tem certeza de que deseja excluir a categoria <?php echo ($categoria['nome']); ?>? Todos os produtos pertencentes a essa categoria serão excluidos também!
                     </div>
                     <div class='modal-footer'>
                         <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Cancelar</button>

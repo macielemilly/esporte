@@ -63,6 +63,15 @@ require 'nav.php';
         <?php
         }
         ?>
+        <?php
+
+        if (isset($_GET['camposnpreenchidos'])) { ?>
+            <div class="alert alert-danger alert-dismissible fade show mt-4" role="alert">
+                Preencha todos os campos
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+
+        <?php } ?>
 
         <div class="d-flex flex-md-row flex-wrap justify-content-between mt-5">
             <h3>Produtos cadastrados</h3>
@@ -158,15 +167,15 @@ require 'nav.php';
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label" for="categoria<?php echo $produto['id']; ?>">Categoria</label><label class="text-danger">*</label>
-                                    <select name="categoria" class="form-select" id="categoria<?php echo $produto['id']; ?>">
+                                    <select name="categoria" class="form-select" id="categoria<?php echo $produto['id']; ?>" required>
+                                    <option disabled selected value=""> </option>
                                         <?php
                                         $sql = "SELECT * FROM categorias";
                                         $resultado = $pdo->prepare($sql);
                                         $resultado->execute();
                                         $categorias = $resultado->fetchAll(PDO::FETCH_ASSOC);
                                         foreach ($categorias as $categoria) {
-                                            $selected = ($categoria['id'] == $produto['id_categorias']) ? 'selected' : '';
-                                            echo "<option value='" . $categoria['id'] . "' $selected>" . $categoria['nome'] . "</option>";
+                                            echo "<option value='" . $categoria['id'] . "'>" . $categoria['nome'] . "</option>";
                                         }
                                         ?>
                                     </select>
@@ -252,7 +261,7 @@ require 'nav.php';
                             <div class="col-md-6 mb-3">
                                 <label class="form-label" for="categoria">Categoria</label><label class="text-danger" for="">*</label>
                                 <select name="categoria" class="form-select" required>
-                                    <option value="1"> </option>
+                                    <option disabled selected value=""> </option>
                                     <?php
                                     $sql = "SELECT * FROM categorias";
                                     $resultado = $pdo->prepare($sql);

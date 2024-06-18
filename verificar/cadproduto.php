@@ -27,5 +27,7 @@ if (isset($_POST['salvar'])) {
 
         header("Location: ../template/produtos.php?nome_prod=$nome&sucesso=ok");
 
+    }elseif(empty($_POST['nome']) || empty($_POST['preco']) || empty($_POST['quantidde']) || empty($_POST['marca']) || empty($_POST['categoria'])){
+        header('Location:../template/produtos.php?camposnpreenchidos');
     }
 }

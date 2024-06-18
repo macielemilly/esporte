@@ -14,5 +14,7 @@ if (isset($_POST['salvar'])) {
 
         header("Location: ../template/categorias.php?nome_categoria=$nome&sucesso=ok");
 
+    }elseif(empty($_POST['nome']) ){
+        header('Location:../template/categorias.php?camposnpreenchidos');
     }
 }

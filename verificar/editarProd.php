@@ -1,10 +1,11 @@
 <?php
+if (isset($_POST['salvar'])) {
     if (
         isset($_POST['id']) && !empty($_POST['id']) &&
         isset($_POST['nome']) && !empty($_POST['nome']) &&
         isset($_POST['preco']) && !empty($_POST['preco']) &&
         isset($_POST['quantidade']) && !empty($_POST['quantidade']) &&
-        isset($_POST['marca']) && !empty($_POST['marca']) && 
+        isset($_POST['marca']) && !empty($_POST['marca']) &&
         isset($_POST['categoria']) && !empty($_POST['categoria'])
 
     ) {
@@ -25,8 +26,11 @@
         $resultado->bindValue(":qtd_estoque", $quantidade);
         $resultado->bindValue(":marca", $marca);
         $resultado->bindValue(":id_categorias", $id_categorias);
-        
         $resultado->execute();
 
         header("Location: ../template/produtos.php?nome_prod=$nome&editar=ok");
+    } 
+    elseif (empty($_POST['nome']) || empty($_POST['preco']) || empty($_POST['quantidde']) || empty($_POST['marca']) || empty($_POST['categoria'])) {
+        header('Location:../template/produtos.php?camposnpreenchidos');
     }
+}
