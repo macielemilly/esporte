@@ -27,79 +27,67 @@ SET time_zone = "+00:00";
 -- Estrutura da tabela `categorias`
 --
 
+DROP TABLE IF EXISTS `produtos`;
 DROP TABLE IF EXISTS `categorias`;
-CREATE TABLE IF NOT EXISTS `categorias` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `nome` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+DROP TABLE IF EXISTS `users`;
 
---
--- Extraindo dados da tabela `categorias`
---
+-- Reativa as restrições
+SET FOREIGN_KEY_CHECKS = 1;
+
+
+CREATE TABLE IF NOT EXISTS `categorias` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 INSERT INTO `categorias` (`id`, `nome`) VALUES
 (1, 'infantil'),
 (2, 'feminino'),
-(3, 'maculino');
+(3, 'masculino');  
 
--- --------------------------------------------------------
 
---
--- Estrutura da tabela `produtos`
---
-
-DROP TABLE IF EXISTS `produtos`;
 CREATE TABLE IF NOT EXISTS `produtos` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `nome` varchar(100) NOT NULL,
-  `preco` decimal(10,2) NOT NULL,
-  `qtd_estoque` int NOT NULL,
-  `marca` varchar(45) NOT NULL,
-  `id_categorias` int NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(100) NOT NULL,
+  `preco` DECIMAL(10,2) NOT NULL,
+  `qtd_estoque` INT NOT NULL,
+  `marca` VARCHAR(45) NOT NULL,
+  `id_categorias` INT NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `id_ctegoria_idx` (`id`,`nome`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `fk_categoria_idx` (`id_categorias`),
+  CONSTRAINT `fk_categoria` FOREIGN KEY (`id_categorias`) REFERENCES `categorias` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
---
--- Extraindo dados da tabela `produtos`
---
 
 INSERT INTO `produtos` (`id`, `nome`, `preco`, `qtd_estoque`, `marca`, `id_categorias`) VALUES
-(6, 'bola', '50.00', 2, 'adidas', 1),
-(8, 'short', '50.00', 4, 'adidas', 2),
-(9, 'we', '12.00', 12, 'eu', 0);
+(1, 'bola', 50.00, 2, 'adidas', 1),
+(2, 'short', 50.00, 4, 'adidas', 2),
+(3, 'camisa', 80.00, 10, 'nike', 3); 
 
--- --------------------------------------------------------
 
---
--- Estrutura da tabela `users`
---
-
-DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `login` varchar(45) NOT NULL,
-  `senha` varchar(45) NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `login` VARCHAR(45) NOT NULL,
+  `senha` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
---
--- Extraindo dados da tabela `users`
---
 
 INSERT INTO `users` (`id`, `login`, `senha`) VALUES
-(44, 'admin', '123'),
-(46, 'maria', '123'),
-(49, 'mateus', '123'),
-(50, 'davi', '123'),
-(51, 'marina', '123'),
-(53, 'testecad', '123'),
-(54, 'tati', '123'),
-(56, 'emilly', '123'),
-(57, 'ana', '123'),
-(58, 'renan', '123'),
-(59, 'sibely', '123');
+(1, 'admin', '123'),
+(2, 'maria', '123'),
+(3, 'mateus', '123'),
+(4, 'davi', '123'),
+(5, 'marina', '123'),
+(6, 'testecad', '123'),
+(7, 'tati', '123'),
+(8, 'emilly', '123'),
+(9, 'ana', '123'),
+(10, 'renan', '123'),
+(11, 'sibely', '123');
+
+
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
